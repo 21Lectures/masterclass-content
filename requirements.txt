@@ -1,0 +1,8 @@
+jupyter
+requests
+nose
+pycrypto
+mock
+csiphash
+pbkdf2
+bash_kernel

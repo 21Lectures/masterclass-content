@@ -1,0 +1,11 @@
+version: '3.5'
+
+services:
+    jupyter-notebook:
+        build: .
+        ports:
+            - '8888:8888'
+        volumes:
+            - type: bind
+              source: ${PWD}/exercises/
+              target: /home/exercises/
