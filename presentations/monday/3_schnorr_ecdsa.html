@@ -1,0 +1,407 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>ECDSA</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/simple.css">
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/default.css">
+		<!-- Theme override for teachbitcoin -->
+		<link rel="stylesheet" href="css/teachbitcoin.css">
+		<!-- Google Font Roboto -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+        <section class = "box">
+          <div class = "title">
+            Turning EC math into <span class = "title weight">Digital Signature schemes</span>
+          </div>
+          <div class = "text_box math_normal"
+               style = "width: 90%; font-size: 27px; margin: 60px 0px 0px 30px">
+            <ul class = "math_normal" style = "margin: 20; padding: 0px;">
+              <li>Private key is the discrete log of the public key</li>
+              <li>Signature verification: Does some equation hold?</li>
+              <ul>
+              <li>Signer balances the equation on the field level</li>
+              <li>Verifier verifies on the group level (multiply everything with \(G\))</li>
+            </ul>
+            <li>Helpful mental picture: Repeated addition of \(G\) throws you around randomly in \(\mathbb{F}_p\times\mathbb{F}_p\)</li>
+            <li>Next up: Schnorr, ECDSA</li>
+            </ul>
+          </div>
+          </section>
+          <section class = "box">
+            <div class = "title">
+              Intermezzo: <span class = "title weight">Hash functions</span>
+            </div>
+            <div class = "text_box math_normal"
+                 style = "width: 90%; font-size: 27px; margin: 60px 0px 0px 30px">
+              <ul class = "math_normal" style = "margin: 20; padding: 0px;">
+                <li>\(H\): Deterministically maps arbitrary-length input to \(n\)-bit output</li>
+                <li>Empirically:</li>
+                <ul>
+                  <li><span class="inline_code">RIPEMD160</span>("satoshi") = <span class="inline_code">3167ab2d46ca8d5f8bca5a5411acc3c8fb481f69</span></li>
+                  <li><span class="inline_code">RIPEMD160</span>("Satoshi") = <span class="inline_code">2911fe64c876962d4461cb529a0b7d61c5afe71c</span></li>
+                </ul>
+                <li>Hash function security</li>
+                <ul>
+                  <li>Collision-resistance: Find \(x_1, x_2: H(x_1)=H(x_2)\)</li>
+                  <li>Pre-image resistance: Find \(x_1: H(x_1) = h_1\)</li>
+                </ul>
+                <li>Security level: Bounded at \(2^{n/2}\) by generic birthday attack</li>
+                <li>In Bitcoin: <span class="inline_code">SHA256</span>, <span class="inline_code">RIPEMD160</span></li>
+                <li>\(\text{hash256}(x) = \text{SHA256}(\text{SHA256}(x))\)</li>
+                <ul>
+                  <li>dubious reasoning</li>
+                </ul>
+              </ul>
+                
+            </div>
+            </section>
+   <section class = "box">
+    <div class = "title">
+      Motivating Schnorr:<span class = "title weight"> ZKP of a discrete log</span>
+    </div>
+
+					<!-- 2 column container -->
+					<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+					<div class = "multi_text_box_container" style = "padding: 50px 0 0 0;">
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box math_normal"
+								 style = "width: 45%; font-size: 27px; margin: 60px 0 0 0">
+							<ul class = "math_normal" style = "margin: 20; padding: 0px;">
+								<li>Assume Peggy wants to prove possession of a secret \(a\) to victor (\(P=aG\), generator \(G\))</li>
+								<ul class = "math_normal">
+                  <li>without disclosing any information about it (ZKP)</li>
+                </ul>
+								<li class = "math_normal">Peggy chooses a random \(k\), sends \(R=kG\) to Victor</li>
+                <li class = "math_normal">Victor sends back a random challenge \(e\)
+                <li class = "math_normal">Peggy sends back \(s=k+e*a\)
+                <li class = "math_normal">Victor checks whether \(sG=R+eP\)
+								<br>
+							</ul>
+						</div>
+						<div class = "text_box"
+								 style = "width: 45%; font-size: 27px; margin: 60px 0 0 0">
+                 <ul class = "math_normal" style = "margin: 20; padding: 0px;">
+                   <li>Why is this sound? (intuitively)</li>
+                   <ul class = "math_normal">
+                     <li>If a forger hadn't committed to \(R\), he could choose random \(s\) and compute \(R=sG-eP\)</li>
+                   
+                   <li class = "math_normal">Pre-commitment forces him to either solve the discrete log of either</li>
+                   <ul class = "math_normal">
+                     <li>\(R+eP\)</li>
+                     <li>\(P\)</li>
+                   </ul>
+                   <li>A rigorous argument reduces DLOG to Schnorr ID</li>
+                   <br>
+                 </ul>
+                 </ul>
+						</div>
+					</div><!-- End of 2 column container -->
+				</section>
+  <!-- *********** END: Pedersen Commitment *********** -->
+
+  <section class = "box">
+    <div class = "title">
+      Non-interactive <span class = "title weight">Schnorr signatures</span>
+    </div>
+
+					<!-- 2 column container -->
+					<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box math_normal"
+								 style = "width: 90%; font-size: 27px; margin: 60px 0 0 30px">
+							<ul class = "math_normal" style = "margin: 20; padding: 0px;">
+								<li>As we have seen, the temporal order of \(R\rightarrow e\) is crucial</li>
+                <li>Fiat-Shamir heuristic: construct a signature scheme by using a random oracle to ensure this</li>
+								<ul class = "math_normal">
+                  <li>cryptographic hash function \(H\)</li>
+                </ul>
+                <li class = "math_normal">Non-random challenge \(e=H(R\mid\mid m)\)
+                  <ul class = "math_normal">
+                    <li>message \(m\)</li>
+                  </ul>
+                <li class = "math_normal">\(s=k+e*a\)
+                  <ul><li>signature \((R,s)\)</li></ul>
+                <li class = "math_normal">Verification equation \(sG\stackrel{?}{=}R+eP\)
+                <li class = "math_normal">BIP340 also hashes \(P\) to avoid some attacks that create a valid signature for \(P'\)
+								<br>
+							</ul>
+						</div>
+				</section>
+        <section class = "box">
+          <div class = "title">
+            Bitcoin: <span class = "title weight">Why not Schnorr?</span>
+          </div>
+          <div class = "text_box math_normal"
+               style = "width: 90%; font-size: 27px; margin: 60px 0px 0px 30px">
+            <ul class = "math_normal" style = "margin: 20; padding: 0px;">
+              <li>Patented in 1991</li>
+              <li>Patent expired in 2008, but there were almost no standards, etc.</li>
+              <li>ECDSA is what you get when you awkwardly try to work around Schnorr</li>
+              <ul>
+              <li>Schnorr is in a sense the simplest possible EC signature algorithm</li>
+            </ul>
+            </ul>
+          </div>
+          </section>
+        <!-- *********** Begin: Pedersenn Commitment *********** -->
+        <section class = "box">
+          <div class = "title">
+            Motivating ECDSA: <span class = "title weight">Pedersen Commitment</span>
+          </div>
+
+          <!-- Derivation Graphic -->
+          <img src="images/ecdsa/commitment2.svg" class = "image" style = "z-index: -1;">
+
+          <!-- 2 column container -->
+          <!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+          <div class = "multi_text_box_container" style = "padding: 0px 0 0 0; width: 1350px;">
+            <!-- 45% div for formula and curve-->
+            <div class = "" style = "width: 40%; font-size: 22px;">
+              <div style ="text-align: center;">
+              </div>
+            </div>
+
+            <!-- 45% text & bulletpoint -->
+            <div class = "text_box"
+                 style = "width: 50%; font-size: 22px; margin: 60px 0 0 0">
+              <ul style = "margin: 0; padding: 0px; list-style-type: none;">
+
+                <li style = "font-weight: bold;">Only one possible value results in commitment: <br>It is “binding”</li>
+                <ul>
+                  <li>Once <span class="inline_code">u</span> is revealed, commitment <span class="inline_code">C</span> can be verfied.</li>
+                  <li>Binding: <span class="inline_code">C</span> can’t be changed for a given secret <span class="inline_code">u</span>.</li>
+                  <li>Information leak: Two equal values equal identical commitments.</li>
+                </ul>
+                <hr style = "height: 5px; visibility: hidden;">
+
+                <li style = "font-weight: bold;">Random factor makes commitment “hiding”.</li>
+                <ul>
+                  <li>Different commitment regardless of value <span class="inline_code">u</span>.</li>
+                  <li>Assumes generator of point <span class="inline_code">H</span> is unknown.</li>
+                </ul>
+                <hr style = "height: 5px; visibility: hidden;">
+
+                <li style = "font-weight: bold;">Broken commitment scheme:</li>
+                <ul>
+                  <li>Generator <span class="inline_code">e</span> of point <span class="inline_code">H</span> is known.</li>
+                  <li>Value <span class="inline_code">u</span> can be modified, commitment remains identical. (How?)</li>
+                </ul>
+
+            </div>
+
+          </div><!-- End of 2 column container -->
+
+        </section>
+        <!-- *********** END: Pedersen Commitment *********** -->
+
+        <!-- *********** Begin: ecdsa *********** -->
+        <section class = "box">
+          <div class = "title">
+              <span class = "title weight">ECDSA</span>
+          </div>
+
+          <!-- Derivation Graphic -->
+          <img src="images/ecdsa/ecdsa1.svg" class = "image" style = "z-index: -1;">
+
+          <!-- 2 column container -->
+          <!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+          <div class = "multi_text_box_container" style = "padding: 0px 0 0 0; width: 1350px;">
+            <!-- 45% div for formula and curve-->
+            <div class = "" style = "width: 40%; font-size: 22px;">
+              <div style ="text-align: center;">
+              </div>
+            </div>
+
+            <!-- 45% text & bulletpoint -->
+            <div class = "text_box"
+                 style = "width: 50%; font-size: 22px; margin: 60px 0 0 0">
+              <ul style = "margin: 0; padding: 0px; list-style-type: none;">
+
+                <li style = "font-weight: bold;">ECDSA can be likened to a commitment scheme which can only be “broken” by owner of secret `e`.</li>
+                <hr style = "height: 5px; visibility: hidden;">
+
+                <li style = "font-weight: bold;">R point:</li>
+                <ul>
+                  <li>Random point (blinding).</li>
+                  <li><span class="inline_code">R</span> point x-coordinate represented on left & right of equation.</li>
+                  <li>Equation can only be balanced with secret <span class="inline_code">e</span>.</li>
+                </ul>
+                <hr style = "height: 5px; visibility: hidden;">
+
+                <li style = "font-weight: bold;">Signed message z:</li>
+                <ul>
+                  <li>For a given random point <span class="inline_code">R</span>, <span class="inline_code">z</span> is committed to on left side of equation.</li>
+                </ul>
+                <hr style = "height: 5px; visibility: hidden;">
+
+                <li style = "font-weight: bold;">ECDSA Verification:</li>
+                <ul>
+                  <li><span class="inline_code">z</span>, <span class="inline_code">r_x</span>, <span class="inline_code">s</span> and public key <span class="inline_code">P</span> required to validate signature.</li>
+                  <li>Blackboard: verification equation</li>
+                </ul>
+                
+
+            </div>
+
+          </div><!-- End of 2 column container -->
+
+        </section>
+        <!-- *********** END: ecdsa *********** -->
+
+        <!-- *********** Begin: DER encoding *********** -->
+        <section class = "box">
+          <div class = "title">
+              <span class = "title weight">DER Encoding</span>
+          </div>
+
+          <!-- Derivation Graphic -->
+          <img src="images/ecdsa/der_encoding.svg" class = "image" style = "z-index: -1;">
+
+          <!-- 2 column container -->
+          <!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+          <div class = "multi_text_box_container" style = "padding: 0px 0 0 0; width: 1350px;">
+            <!-- 45% div for formula and curve-->
+            <div class = "" style = "width: 40%; font-size: 22px;">
+              <div style ="text-align: center;">
+              </div>
+            </div>
+
+            <!-- 45% text & bulletpoint -->
+            <div class = "text_box"
+                 style = "width: 50%; font-size: 22px; margin: 60px 0 0 0">
+              <ul style = "margin: 0; padding: 0px; list-style-type: none;">
+
+                <li style = "font-weight: bold;">libsecp256k1 replaced OpenSSL</li>
+                <ul>
+                  <li>OpenSSL suffers from encoding ambiguity across systems.</li>
+                  <li>libsecp256k1 removes this dependency from project.</li>
+                </ul>
+                <hr style = "height: 5px; visibility: hidden;">
+
+                <li style = "font-weight: bold;">Strict encoding (BIP66)</li>
+                <ul>
+                  <li>Removes encoding malleability: Consensus enforced encoding standard.</li>
+                  <li>Removes ECDSA malleability: low s values enforced.</li>
+                </ul>
+                <hr style = "height: 5px; visibility: hidden;">
+
+                <li style = "font-weight: bold;">DER signature is 70-72 Bytes long.</li>
+                <ul>
+                  <li>r_x length: 32/33 Bytes</li>
+                  <ul>
+                    <li>256bit signed value, no leading nulls</li>
+                  </ul>
+                  <li>s length: 31/32 Bytes</li>
+                  <ul>
+                    <li>Low s values enforced, no leading nulls</li>
+                  </ul>
+                </ul>
+
+            </div>
+
+          </div><!-- End of 2 column container -->
+
+        </section>
+        <!-- *********** END: ecdsa *********** -->
+
+
+
+        <section class = "box">
+          <div class = "title">
+            <span class = "title weight">Other Schnorr benefits</span>
+          </div>
+          <div class = "text_box math_normal"
+               style = "width: 90%; font-size: 27px; margin: 60px 0px 0px 30px">
+            <ul class = "math_normal" style = "margin: 20; padding: 0px;">
+              <li>Security proofs rely on weaker assumptions</li>
+              <li>Signature linearity!</li>
+              <ul>
+                <li>
+                  \(\sum s_iG = \sum R_i +e_iP_i\)
+                </li>
+              </ul>
+              <li>Signature is an EC point: fancy math ensues</li>
+              <ul>
+              <li>Batch verification</li>
+              <li>Adaptor sigantures</li>
+              <li><a class="orange_link" href="https://github.com/jonasnick/taproot-ringsig/" target="_blank">1-of-N ownership proofs</a></li>
+            </ul>
+            </ul>
+          </div>
+          </section>
+
+
+
+
+      </div><!-- END: Lecture Materials Div -->
+		</div><!-- END: Reveal Div -->
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/math/math.js', async: true }
+				],
+
+				math: {
+					mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+					config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+				},
+
+				previewLinks: false,
+
+				// Push each slide change to the browser history
+				history: true,
+
+				// Enable keyboard shortcuts for navigation
+				keyboard: true,
+
+				// Enables touch navigation on devices with touch input
+				overview: false,
+				touch: false,
+
+				// The "normal" size of the presentation, aspect ratio will be preserved
+				// when the presentation is scaled to fit different resolutions. Can be
+				// specified using percentage units.
+				width: 1366,
+			  height: 768,
+				// Factor of the display size that should remain empty around the content
+				margin: 0.05,
+
+				// Bounds for smallest/largest possible scale to apply to content
+				minScale: 0.2,
+				maxScale: 1.5
+			});
+			Reveal.configure({ slideNumber: true });
+		</script>
+	</body>
+</html>

@@ -1,0 +1,774 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>EC Math</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/simple.css">
+		<!-- Highlight.js used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/default.css">
+		<!-- Simple.css theme override for teachbitcoin -->
+		<link rel="stylesheet" href="css/teachbitcoin.css">
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+
+				<!-- *********** END: Chapter EC Reals  *********** -->
+
+				<!-- *********** BEGIN: EC over real numbers *********** -->
+				<section class = "box">
+					<div class = "title">
+						<span class = "title weight">Ellipic Curves</span> over Real Numbers
+					</div>
+
+					<!-- Graph -->
+					<img src="images/ec_math/ec_real.svg" class = "image" style = "z-index: -1;">
+
+					<!-- 2 column container -->
+					<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+					<div class = "multi_text_box_container" style = "padding: 50px 0 0 0;">
+						<!-- 45% div for formula and curve-->
+						<div class = "" style = "width: 45%; font-size: 27px;">
+							<div style ="text-align: center;">
+								Curve shown: \(y^{2}=x^{3}+7\)
+							</div>
+						</div>
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 45%; font-size: 27px; margin: 60px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+								<li style = "font-weight: 600;">Elliptic curve general form:</li>
+								<li>\(y^{2}=ax^{3}+bx+c\)</li>
+								<br>
+								<li style = "font-weight: 600;">The secp256k1 curve form:</li>
+								<li>\(y^{2}=x^{3}+7\)</li>
+								<br>
+								<li style = "font-weight: 600;">Elliptic curve points:</li>
+								<li><span class="inline_code">EC-Point P(x,y)</span>on the elliptic curve fulfills the its curve equation.</li>
+								<br>
+							</ul>
+						</div>
+					</div><!-- End of 2 column container -->
+				</section>
+				<!-- *********** END: EC over real numbers *********** -->
+
+				<!-- *********** BEGIN: EC over reals: Addition *********** -->
+				<section class = "box">
+					<div class = "title">
+						<span class = "title weight">EC-Point Addition </span>over Real Numbers
+					</div>
+
+					<!-- Images step 0 - 3 -->
+					<img src="images/ec_math/ec_addition_step0.svg" class = "image" style = "z-index: -1;">
+					<img src="images/ec_math/ec_addition_step1.svg" class = "fragment fade-in image" style = "z-index: -1;">
+					<img src="images/ec_math/ec_addition_step2.svg" class = "fragment fade-in image" style = "z-index: -1;">
+					<img src="images/ec_math/ec_addition_step3.svg" class = "fragment fade-in image" style = "z-index: -1;">
+
+					<!-- Horizontal Text Box -->
+					<!-- Left Text Div --><!-- Right Text Div -->
+					<div class = "text_box_horizontal" style = "position: absolute; top: 530px; left: 65px;">
+						<div class = "multi_text_box_container">
+							<!-- Left text div -->
+							<div style = "width: 55%">
+								<ul style = "margin: 0px; padding: 0px; list-style-type: none;">
+									<li>1) Form a line with P1 & P2</li>
+									<li>2) Intersect resulting line with EC</li>
+									<li>3) Reflect intersection point across X-axis for P3</li>
+								</ul>
+							</div>
+
+						</div>
+					</div><!-- End of Horizontal Text Box -->
+				</section>
+				<!-- *********** END: EC over reals: Addition *********** -->
+
+				<!-- *********** BEGIN: EC over reals: Computation of Addition *********** -->
+				<section class = "box">
+					<div class = "title">
+						<span class = "title weight">EC-Point Addition</span> (Computation)
+					</div>
+
+					<!-- Container for equation list -->
+					<div style = "position: absolute; top: 120px; left: 120px;">
+						<ul style = "list-style-type: none; margin: 0;">
+							<li class = "math_normal" style = "margin:0; font-weight:600;"
+								>For an elliptic curve of form:
+							</li>
+							<ul class = "math_normal">
+								<li >\(y^{2}=ax^{3}+bx+c\)</li>
+							</ul>
+							<br>
+							<div class = "">
+							<li class = "math_normal" style = "margin: 0 0 20px 0; font-weight:600;"
+								>Computation of \(P_{3} = P_{1} + P_{2}\)
+							</li>
+								<ul class = "math_normal">
+									<li >\(P_{3}(x_{3},y_{3}) = P_{1}(x_{1},y_{1}) + P_{2}(x_{2},y_{2})\)</li>
+									<ul>
+										<li>\(s = \frac{y_{2}-y_{1}}{x_{2}-x_{1}}\) for \(x_{1} \neq x_{2}\)</li>
+										<li>\(x_{3} = s^{2}-x_{1}-x_{2}\)</li>
+										<li>\(y_{3}=s(x_{1}-x_{3})-y_{1}\)</li>
+									</ul>
+								</ul>
+							</div>
+						</ul>
+					</div>
+
+					<!-- Container for bottom horizontal text bar -->
+					<div class = "text_box_horizontal" style = "position: absolute; top: 530px; left: 65px;">
+						<ul style = "margin: 0px; padding: 0px; list-style-type: none;">
+							<li>The equations shown describe EC-point addition where \(x_{1} \neq x_{2}\).</li>
+
+						</ul>
+					</div>
+				</section>
+				<!-- *********** END: EC over reals: Computation of Addition *********** -->
+
+				<!-- *********** BEGIN: EC over reals: Addition with INF *********** -->
+				<section class = "box">
+
+					<div class = "title">
+						EC Point Addition with <span class = "title weight">Infinity</span>
+					</div>
+
+					<!-- Graph -->
+					<img src="images/ec_math/ec_addition_inf.svg" class = "image" style = "z-index: -1;">
+
+					<!-- 2 column container -->
+					<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+					<div class = "multi_text_box_container" style = "padding: 50px 0 0 0;">
+						<!-- 45% div for formula and curve-->
+						<div class = "" style = "width: 45%; font-size: 28px;">
+							<div style ="text-align: center;">
+							</div>
+						</div>
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 45%; font-size: 23px; margin: 60px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+								<li style = "font-weight: 600;">The Point at Infinity:</li>
+								<li>The (Inf/Inf) point is defined as a point which is infinitely far away in the direction of the y-axis.
+								</li>
+								<br>
+								<li>Therefore, we can add a point P1 to the infinity point simply by connecting a vertical line through P1.</li>
+								<br>
+								<li>\( P_{1}(x_{1},y_{1}) + (Inf/Inf) = P_{1}(x_{1},y_{1}) \)</li>
+								<li>\( P_{1}(x_{1},y_{1}) + P_{2}(x_{1},-y_{1}) = (Inf/Inf) \)</li>
+								<li style = "font-weight: 600;">The infinity point is the group identity element</li>
+							</ul>
+						</div>
+					</div><!-- End of 2 column container -->
+
+				</section>
+				<!-- *********** END: EC over reals: Addition with INF *********** -->
+
+				<!-- *********** BEGIN: EC over reals: Scalar x EC Point *********** -->
+				<section class = "box">
+
+					<div class = "title">
+						<span class = "title weight">Scalar</span> x <span class = "title weight">EC Point</span>
+					</div>
+
+					<!-- Graph -->
+					<img src="images/ec_math/ec_multiplication.svg" class = "image" style = "z-index: -1;">
+
+					<!-- 2 column container -->
+					<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+					<div class = "multi_text_box_container" style = "padding: 20px 0 0 0;">
+						<!-- 45% div for formula and curve-->
+						<div class = "" style = "width: 50%; font-size: 28px;">
+							<div style ="text-align: center;">
+								\(P_{3} = P_{1} +  P_{1} = 2 \cdot P_{1}\)
+							</div>
+						</div>
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 50%; font-size: 21px; margin: 0px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+								<li style = "font-weight: 600;">Scalar multiplication of an EC point P</li>
+								<ul>
+									<li><span class="inline_code">s &#8901; P</span> equals adding <span class="inline_code">P</span> to itself <span class="inline_code">s</span> times.</li>
+								</ul>
+								<hr style = "height: 1px; visibility: hidden;">
+
+								<li style = "font-weight: 600;">Point(x,y) + Point(x,y)</li>
+								<ul>
+									<li>Consider Line L&#39;(P1,P2).</li>
+									<li>Converges to tangent of P1, as P1 = P2.</li>
+									<ul style="font-size: 16px">
+										<li>One intuitive reason for restrictions on \(a, b\) to avoid singular points</li>
+									</ul>
+								</ul>
+								<hr style = "height: 1px; visibility: hidden;">
+
+								<li style = "font-weight: 600;">Distributivity:</li>
+								<ul>
+									<li><span class="inline_code">(a + b)&#8901;C = a&#8901;C + b&#8901;C</span></li>
+									<li>(Can be proved algebraically)</li>
+								</ul>
+							</ul>
+						</div>
+					</div><!-- End of 2 column container -->
+
+				</section>
+				<!-- *********** BEGIN: EC over reals: Scalar x EC Point *********** -->
+
+				<!-- *********** Begin: EC over reals: Associativity of Addition *********** -->
+				<section class = "box">
+
+					<div class = "title">
+						<span class = "title weight">Commutativity/Associativity</span> of Point Addition
+					</div>
+
+					<!-- Graph -->
+					<img src="images/ec_math/ec_add_associativity0.svg" class = "image" style = "z-index: -1;">
+					<img src="images/ec_math/ec_add_associativity1.svg" class = "fragment image" style = "z-index: -1;">
+					<img src="images/ec_math/ec_add_associativity2.svg" class = "fragment image" style = "z-index: -1;">
+					<img src="images/ec_math/ec_add_associativity3.svg" class = "fragment image" style = "z-index: -1;">
+					<img src="images/ec_math/ec_add_associativity4.svg" class = "fragment image" style = "z-index: -1;">
+
+					<!-- 2 column container -->
+					<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+					<div class = "multi_text_box_container" style = "padding: 24px 0 0 0;">
+						<!-- 45% div for formula and curve-->
+						<div class = "" style = "width: 50%; font-size: 24px;">
+							<div style ="text-align: center;">
+								<br>
+								<span class ="weight">(P1 + P2) + P3 = P1 + (P2 + P3)</span>
+							</div>
+						</div>
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 50%; font-size: 24px; margin: 40px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+
+								<li style = "font-weight: 600;">EC point addition commutivity</li>
+								<ul>
+									<li>P1 + P2 = P2 + P1</li>
+									<li>(Same intersection point)</li>
+								</ul>
+								<hr style = "height: 1px; visibility: hidden;">
+
+								<li style = "font-weight: 600;">EC point addition associativity</li>
+								<ul>
+									<li>Order of addition doesn't change result.</li>
+									<li>Associativity proof is rather <a class="orange_link" href="https://www.maths.tcd.ie/pub/Maths/Courseware/EllipticCurves/2016/Associativity.pdf" target="_blank">involved</a>.</li>
+									<ul>
+										<li><span class="inline_code">(P1 + P2) + P3 = P1 + (P2 + P3)</span></li>
+										<li>(Associativity can be observed in example)</li>
+									</ul>
+									<li>Rather fragile property, reflection necessary!</li>
+								</ul>
+								<hr style = "height: 1px; visibility: hidden;">
+
+							</ul>
+						</div>
+					</div><!-- End of 2 column container -->
+					
+				</section>
+				<section class = "box">
+
+					<div class = "title">
+						<span class = "title weight">Why reflect?</span> Associativity
+					</div>
+
+					<img src="images/assoc1.png" width = 400 style = "z-index: -2;">
+					<img src="images/assoc2.png" width = 400 style = "z-index: -1;">
+					<img src="images/nonassoc.png" width = 400  style = "z-index: -1;">
+				</section>	
+				<section class = "box">
+
+					<div class = "title">
+						<span class = "title weight">Stirring the pot</span>
+					</div>
+
+
+					<div class = "multi_text_box_container" style = "padding: 24px 0 0 0;">
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 50%; font-size: 24px; margin: 40px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+
+								<li style = "font-weight: 600;">So far we established the groups structure of elliptic curves</li>
+								<ul>
+									<li>Point addition</li>
+									<li>Identity element</li>
+									<li>etc.</li>
+								</ul>
+								<hr style = "height: 1px; visibility: hidden;">
+
+								<li style = "font-weight: 600;">ECs are defined over an underlying field</li>
+								<ul>
+									<li>\(y^{2}=ax^{3}+bx+c\)</li>
+									<li>So far it was always \(\mathbb{Q}\), but any field does the trick</li>
+									<ul>
+										<li>The magic of abstract algebra</li>
+									</ul>
+									<li> \(\Rightarrow\)Final step: ECs over finite fields</li>
+								</ul>
+								<hr style = "height: 1px; visibility: hidden;">
+
+							</ul>
+						</div>
+					</div><!-- End of 2 column container -->
+
+				</section>
+				
+				<!-- *********** END: EC over reals: Associativity of Addition *********** -->
+
+				<!-- *********** END: Chapter EC Reals  *********** -->
+
+				<!-- *********** Begin: EC over finite fields *********** -->
+				<section class = "box">
+
+					<div class = "title">
+						<span class = "title weight">Elliptic Curves</span> over \( \mathbb{F}_{p} \)
+					</div>
+
+					<!-- Graph -->
+					<img src="images/ec_math/ec_ff_point.svg" class = "image" style = "z-index: -2;">
+
+					<!-- 2 column container -->
+					<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+					<div class = "multi_text_box_container" style = "padding: 24px 0 0 0;">
+						<!-- 45% div for formula and curve-->
+						<div class = "" style = "width: 50%; font-size: 24px;">
+							<div style ="text-align: center;">
+								<br>
+								<span>\( y^{2}=x^{3}+7\) over \( \mathbb{F}_{29} \)</span>
+							</div>
+						</div>
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 50%; font-size: 24px; margin: 40px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+								<li style = "font-weight: 600;">Point on elliptic curve over \( \mathbb{F}_{p} \)</li>
+								<ul>
+									<li>Point coordinates fulfill following equation:
+									<li>\( y^{2}=ax^{3}+bx^{2}+c\:(mod\:p)\)</li>
+								</ul>
+								<hr style = "height:5px; visibility:hidden;">
+
+								<li style = "font-weight: 600;">Example EC points:</li>
+								<ul>
+									<li>\( y^{2}=x^{3}+7\) over \( \mathbb{F}_{29} \)</li>
+									<li>\( P_{1}\left(3,18\right) \): </li>
+									<ul>
+										<li>\(18^{2} = 3^{3}+7\:(mod\:29) =5 \>\> \) &#10003</li>
+									</ul>
+									<li>\( P_{2}\left(23,20\right) \): </li>
+									<ul>
+										<li>\(20^{2} = 23^{3}+7\:(mod\:29) =23 \>\> \) &#10003</li>
+									</ul>
+									<li>Note: Elliptic curve plots are a set of non-continuous points
+									since finite fields themselves are non-continuous.</li>
+								</ul>
+						</div>
+					</div><!-- End of 2 column container -->
+
+				</section>
+				<!-- *********** END: EC over finite fields *********** -->
+
+				<!-- *********** BEGIN: EC Addition over Finite Fields *********** -->
+				<section class = "box">
+
+					<div class = "title">
+						<span class = "title weight">EC-Point Addition </span>over \( \mathbb{F}_{p} \)
+					</div>
+
+					<div class = "multi_text_box_container" style = "padding: 60px 0 0 0;">
+
+						<!-- 30% div for formula and curve-->
+						<div class = "" style = "width: 30%; font-size: 18px;">
+							<div style ="text-align: left;">
+								<ul style = "margin: 25px 0 0 0; padding: 0px; list-style-type: none; opacity:0.4;">
+									<li style = "font-weight: 600;">EC-Point Addition over <br>Reals \(\mathbb{R}\):</li>
+									<br>
+									<li style = "font-size:20px;font-style:italic;">Addition where x1 != x2:</li>
+									<li>\( s = \frac{y_{2}-y_{1}}{x_{2}-x_{1}} \)</li>
+									<li>\( x_{3} = s^{2}-x_{1}-x_{2} \)</li>
+									<li>\( y_{3} = s\:(x_{1}-x_{3})-y_{1} \)</li>
+									<br>
+									<li style = "font-size:20px;font-style:italic;">Addition where P1 = P2:</li>
+									<li>\( s =\frac{(3x_{1}^{2}+a)}{2y_{1}} \)</li>
+									<li>\( x_{3} =s^{2}-2x_{1} \)<li>
+									<li>\( y_{3} =s(x_{1}-x_{3})-y_{1} \)<li>
+									<br>
+									<li style = "font-size:20px;font-style:italic;">Addition with infinity:</li>
+									<li>\( (x_{1},y_{1}) + (\infty , \infty) = (x_{1},-y_{1}) \)</li>
+								</ul>
+							</div>
+						</div>
+
+						<!-- 70% div for formula and curve-->
+						<div class = "text_box" style = "width: 70%; font-size: 24px;">
+
+							<div class = "sub_multi_text_box_container">
+								<!-- Multi text container -->
+								<!-- Left -->
+								<div style = "width: 50%;">
+									<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+										<li style = "font-weight: 600;">EC-Point Addition over Prime \( \mathbb{F}_{p} \) :
+										</li>
+										<li style = "font-size:20px;"
+											>&#8592 EC-point addition equations over \( \mathbb{R} \)
+											apply to EC point addition over prime \( \mathbb{F}_{p} \).
+										</li>
+										<br>
+										<div style = "font-size:20px;">
+										<li>Example: </li><br>
+										<li>\(P_{3}\left(x_{3},y_{3}\right)=P_{1}\left(3,18\right)+P_{2}\left(23,20\right)\)
+										</li><br>
+										<li
+											>\(s = \frac{20-18}{23-3}  =2\cdot20^{29-2} \>(mod\:29) = 3\)
+										</li>
+										<li>\(x_{3} = 3^{2}-23-3\:(mod\:29) = 12\)</li>
+										<li>\(y_{3} = 3\cdot(3-12)-18\:(mod\:29)=13\)</li>
+									</div>
+									</ul>
+								</div>
+								<!-- Right  -->
+								<div style = "width: 45%;">
+									<br>
+									<span>\(y^{2}=x^{3}+7\) over \(\mathbb{F}_{29}\)
+									</span>
+									<br>
+									<br>
+									<img src="images/ec_math/ec_ff_addition_cropped.svg" class = "image_cropped">
+								</div>
+							</div>
+
+						</div>	<!-- END: 70% div for formula and curve-->
+					</div><!-- END: multi-container div -->
+
+				</section>
+				<!-- *********** END: EC Addition over Finite Fields *********** -->
+				<section class = "box">
+
+					<div class = "title">
+						<span class = "title weight">Geometric intuition</span> for EC-Point Addition over \( \mathbb{F}_{p} \)
+					</div>
+					<img src="images/point-addition-mod-p.png">
+				</section>
+				<!-- *********** BEGIN: EC Cyclic Groups (I) *********** -->
+				<section class = "box">
+
+					<div class = "title">
+						<span class = "title weight">Elliptic Curve</span> Point Groups (I)
+					</div>
+
+					<!-- Multi text Box -->
+					<div class = "multi_text_box_container" style = "padding: 60px 0 0 0;">
+						<!-- Left (w image) -->
+						<div class = "" style = "width: 35%; font-size: 25px; padding:40px 0 0 0;">
+							\( y^{2}=x^{3}+7\) over \( \mathbb{F}_{29} \)
+							<img src="images/ec_math/ec_ff_group_cropped.svg" class = "image_cropped">
+						</div>
+						<!-- Right (UL)-->
+						<div class = "text_box" style = "width: 55%; font-size:22px">
+
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+								<li style ="font-weight: 600;">Symmetry: Each point <span class="inline_code">P(x,y)</span> has an inverse <span class="inline_code">P(x,-y)</span></li>
+								<ul>
+									<li>\(P(x,y)+P(x,-y)=(Inf/Inf)\)</li>
+									<li>Same relationship as over \(\mathbb{R}\)</li>
+									<li>Blackboard: Prove that both points are on the curve</li>
+
+								</ul>
+								<hr style = "height:3px; visibility:hidden;">
+
+								<li style ="font-weight: 600;">Points form a cyclic point group</li>
+									<ul>
+										<li>\(1 \circ G\)</li>
+										<li>\(2 \circ G\)</li>
+										<li>\(...\)</li>
+										<li>\( \lvert \mathbb{G} \rvert \circ G = (Inf,Inf)  \)</li>
+										<li>(Proof of cyclic behaviour omitted)</li>
+									</ul>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<!-- *********** END: EC-point Groups (I) *********** -->
+
+				<!-- *********** BEGIN: EC Cyclic Groups *********** -->
+				<section class = "box">
+
+					<div class = "title"
+						><span class = "title weight">Elliptic Curve</span> Point Groups (II)
+					</div>
+
+					<div style = "position: absolute; top: 150px; left: 120px;">
+						<ul style = "list-style-type: none; margin: 0;">
+							<div>
+								<ul class = "math_normal", style="margin: 0px; padding: 0px; list-style-type: none;">
+									<hr style = "height:1px; visibility:hidden;">
+									<li style="font-weight:600;">1) Closed group operation (Point addition)</li>
+									<ul>
+										<li>EC point addition over \(\mathbb{F}_p\)</li>
+										<li>EC point addition is Associative & Commutative</li>
+									</ul>
+									<hr style = "height:1px; visibility:hidden;">
+									<li style="font-weight:600;">2) Generator group element (\( G \))</li>
+									<ul>
+										<li><span class="inline_code">\(G+G+G...G+G+G = s \circ G = P \in \mathbb{G}\)</span></li>
+										<li>Finite number \(\lvert\mathbb{G}\rvert\) of elements in cyclical group \(\mathbb{G}\)
+									</ul>
+									<hr style = "height:1px; visibility:hidden;">
+									<li style="font-weight:600;">3) Neutral group element (inf/inf)</li>
+									<ul>
+										<li>\(P + (inf,inf)=P\)</li>
+									</ul>
+									<hr style = "height:1px; visibility:hidden;">
+									<li style="font-weight:600;">4) Group element inverse</li>
+									<ul>
+										<li>\(P(x,y)+P(x,-y)=(inf,inf)\)</li>
+									</ul>
+								</ul>
+							</div>
+						</ul>
+					</div>
+				</section>
+				<!-- *********** END: EC Cyclic Groups *********** -->
+
+				<!-- *********** BEGIN: EC Discrete log *********** -->
+				<section class = "box">
+
+					<div class = "title"
+						><span class = "title weight">Disrete Log</span> over Elliptic Curves
+					</div>
+
+					<div style = "position: absolute; top: 150px; left: 120px;">
+						<ul style = "list-style-type: none; margin: 0;">
+							<li class = "math_large" style="font-weight:600;">Discrete Log Problem:</li>
+							<div>
+								<ul class = "math_normal", style="margin: 0px; padding: 0px; list-style-type: none;">
+									<hr style = "height:1px; visibility:hidden;">
+									<li><span class="inline_code" style="font-weight:600;">\( P=G+G+G...G+G+G = k \circ G \)</span></li>
+									<ul>
+										<li>Given <span class="inline_code" style="font-weight:600;">\(P\)</span>, solve for  <span class="inline_code" style="font-weight:600;">\(k\)</span></li>
+										<li>Number of Points in Group: \(\approx p\) (<a href=https://en.wikipedia.org/wiki/Schoof%27s_algorithm#The_algorithm>Schoof's Algorithm</a>)</li>
+										<li>EC multiplication is more like a black-box-operation than modulo-exponentiation over \(\mathbb{F}_p\)</li>
+										<hr style = "height:1px; visibility:hidden;">
+									</ul>
+										<div class = "fragment">
+											<ul>
+												<li style="font-weight:600;">Only general discrete log solutions are known for Elliptic Curves <span style="font-weight:300;">\(O(\sqrt{ \lvert\mathbb{G}\rvert })\)</span></li>
+												<ul>
+													<li>160bit (group order) / 80bit (security)</li>
+													<li>256bit (group order) / 128bit (security)</li>
+
+												</ul>
+												<hr style = "height:1px; visibility:hidden;">
+
+												<li style="font-weight:600;">In Comparison: Index-calculus(DH, DSA, Elgamal), Factorization(RSA)</li>
+												<ul>
+													<li>1040bit (group order) / 80bit (security)</li>
+													<li>3072bit (group order) / 128bit (security)</li>
+												</ul>
+												<li style="font-weight:600;">This is a conjecture! (\(\mathcal{P} \stackrel{?}{=} \mathcal{NP}\))</li>
+
+											</ul>
+										<div>
+
+								</ul>
+							</div>
+						</ul>
+					</div>
+				</section>
+				<!-- *********** END: EC Discrete log *********** -->
+
+				<!-- *********** BEGIN: Double and Add *********** -->
+				<section class = "box">
+
+					<div class = "title"
+						><span class = "title weight">Double and Add</span>
+					</div>
+
+					<div style = "position: absolute; top: 150px; left: 120px;">
+						<ul style = "list-style-type: none; margin: 0;">
+							<li class = "math_large"><span style="font-weight:600;">Computing</span> \( P=k \circ G \) <span style="font-weight:600;">from known </span>\( k \) <span style="font-weight:600;">must be efficient</span></li>
+							<div>
+								<ul class = "math_normal", style="margin: 0px; padding: 0px; list-style-type: none;">
+									<hr style = "height:1px; visibility:hidden;">
+									<li><span class="inline_code" style="font-weight:600;">\( 26 \circ G = {11010} \circ G \)</span></li>
+									<ul>
+										<li>Bitscan from left to right.</li>
+										<li>Value of Bit0 is 1:  \( \:\: G \)</li>
+										<li>Value of Bit1 is 1:  \( \:\:2 \circ G + G = 3 \circ G \)</li>
+										<li>Value of Bit2 is 0:  \( \:\:2 \circ 3G  = 6 \circ G \)</li>
+										<li>Value of Bit3 is 1:  \( \:\:2 \circ 6G + G = 13 \circ G \)</li>
+										<li>Value of Bit4 is 0:  \( \:\:2 \circ 13G = 26 \circ G \)</li>
+										<hr style = "height:1px; visibility:hidden;">
+								</ul>
+								<div class="fragment">
+								<li style = "font-weight:600;">25 Group operations reduced to 6</li>
+								<li>\(O(\log n)\) Complexity</li>
+							</div>
+							</div>
+						</ul>
+					</div>
+				</section>
+				<!-- *********** END: Double and Add *********** -->
+
+				<!-- *********** BEGIN: BTC Private/Public Keys *********** -->
+				<section class = "box">
+
+					<div class = "title">
+						Bitcoin <span class = "title weight">Private & Public Keys</span>
+					</div>
+
+					<div style = "position: absolute; top: 120px; left: 120px;">
+						<ul style = "list-style-type: none; margin: 0;">
+							<li class = "math_normal" style = "font-weight: 600; margin: 0 0 20px 0;">The secp256k1 EC point group:</li>
+							<li class = "math_normal">\(y^{2}=x^{3}+7\) over \(\mathbb{F}_{p}\) where \(p = 2^{256} - 2^{32} - 977\) (How big is \(p\)?)</li>
+							<li class = "math_normal">\(G = \:(\) <span style = "font-family: Roboto Mono; font-size: 20px;">79BE667E F9DCBBAC 55A06295 CE870B07 029BFCDB 2DCE28D9 59F2815B 16F81798,
+								<br>
+								\(\:\:\:\:\:\:\:\:\:\:\:\:\)
+								483ADA77 26A3C465 5DA4FBFC 0E1108A8 FD17B448 A6855419 9C47D08F FB10D4B8</span>\(\:)\)</li>
+							<li class = "math_normal">\(|G| =\) <span style = "font-family: Roboto Mono; font-size: 20px;">FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFE BAAEDCE6 AF48A03B BFD25E8C D0364141</span></li>
+							<li class = "math_normal">\(\:p =\) <span style = "font-family: Roboto Mono; font-size: 20px;">FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFE FFFFFC2F</span></li>
+							<div class = "substep">
+								<li class = "math_normal" style = "font-weight: 600; margin: 30px 0 20px 0;">Bitcoin private & public keys:</li>
+								<li class = "math_normal weight">\(P = k \circ G\)</li>
+								<li class = "math_normal" style = "font-style:italic;">(Private key scalar \(k\) is chosen, secp256k1-point \(P\) is the public key)</li>
+							</div>
+					</div>
+
+					<div class = "text_box_horizontal" style = "position: absolute; top: 580px; left: 65px;">
+						<ul style = "margin: 0px; padding: 0px; list-style-type: none;">
+							<li>The secp256k1 EC-Point Group is used to generate Bitcoin private/public keys.</li>
+							</li>
+						</ul>
+					</div>
+
+				</section><section class = "box">
+
+					<div class = "title">
+						Why <span class = "title weight">secp256k1</span>
+					</div>
+
+					<div class = "multi_text_box_container" style = "padding: 24px 0 0 0;">
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 50%; font-size: 24px; margin: 40px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+
+								<li style = "font-weight: 600;">secp256k1 has some special properties that speed up some operations</li>
+								<ul>
+									<li>\(a=0\)</li>
+								</ul>
+								<li style = "font-weight: 600;">Prime order also chosen in a somewhat predictable manner</li>
+								<li style = "font-weight: 600;">However, secp256k1 was virtually unused before Bitcoin</li>
+								<hr style = "height: 1px; visibility: hidden;">
+
+							</ul>
+						</div>
+
+				</section>
+				<!-- *********** END: BTC Private/Public Keys *********** -->
+
+				<!-- *********** BEGIN: Public Key Serialisation *********** -->
+				<section class = "box">
+					<div class = "title">
+						Bitcoin Public Key Point <span class = "title weight">Serialisation</span>
+					</div>
+
+					<!-- Derivation Graphic -->
+					<img src="images/ec_math/publickey_serialisation.svg" class = "image" style = "z-index: -1;">
+
+					<!-- 2 column container -->
+					<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+					<div class = "multi_text_box_container" style = "padding: 0px 0 0 0; width: 1270px;">
+						<!-- 45% div for formula and curve-->
+						<div class = "" style = "width: 45%; font-size: 27px;">
+						</div>
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 36%; font-size: 20px; margin: 40px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+								<li style = "font-weight: bold; font-size:22px">&#10122 Uncompressed Public Key Point</li>
+								<li>The uncompressed public key point directly represents both x and y-coordinates.</li>
+								<br>
+								<li style = "font-weight: bold; font-size:22px">&#10123 Compressed Public Key Point</li>
+								<li>The compressed public key point implies its y-coordinate from its x coordinate.
+								<br><br>
+								A compressed public key begins with 0x02/0x03 to imply an even/odd y-coordinate.
+								<br><br>
+								Necessarily even/odd, because scalar field order is prime (odd). For given x, both +/-y values valid, which are complements in the odd field order.
+								<br><br>
+								Given x, +/-y can be found with the <a class="orange_link" href = "https://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm">Tonelli–Shanks algorithm</a>
+								</li>
+							</ul>
+						</div>
+					</div><!-- End of 2 column container -->
+
+				</section>
+				<!-- *********** END: Public Key Serialisation *********** -->
+
+
+			</div><!-- END: Slides Div -->
+		</div><!-- END: Reveal Div -->
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/math/math.js', async: true }
+				],
+
+				math: {
+					mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+					config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+				},
+				previewLinks: false,
+
+				// Push each slide change to the browser history
+				history: true,
+
+				overview: false,
+				touch: false,
+
+				// The "normal" size of the presentation, aspect ratio will be preserved
+				// when the presentation is scaled to fit different resolutions. Can be
+				// specified using percentage units.
+				width: 1366,
+			  height: 768,
+				// Factor of the display size that should remain empty around the content
+				margin: 0.05,
+
+				// Bounds for smallest/largest possible scale to apply to content
+				minScale: 0.2,
+				maxScale: 1.5
+			});
+			// Shows the slide number using default formatting
+			Reveal.configure({ slideNumber: true });
+		</script>
+	</body>
+</html>
