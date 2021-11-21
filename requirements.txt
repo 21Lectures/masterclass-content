@@ -6,3 +6,4 @@ mock
 csiphash
 pbkdf2
 bash_kernel
+base58
