@@ -23,7 +23,7 @@
 
 				<section class = "box">
 					<div class = "title">
-					  <span class = "title weight">Problems with complex output scripts</span>
+						Problems with <span class = "title weight">complex output scripts</span>
 					</div>
 					<div class = "multi_text_box_container" style = "padding: 40px 0 0 0; width: 1270px;">
 					<div class = "text_box math_normal"
@@ -64,12 +64,12 @@
 
 							<li style = "font-weight: bold;">Pay-to-Script-Hash output commits to a specific embedded script.</li>
 							<ul style = "list-style-type: circle;">
-								<li>Any output script can be embedded into a P2SH output.</li>
+								<li>Any output script can be embedded into a P2SH output (no P2SH though :)).</li>
 								<li>The embedded script must be supplied during spending, but is not disclosed beforehand.</li>
 							</ul>
 							<hr style = "height:2px; visibility:hidden;">
 
-							<li style = "font-weight: bold;">P2SH output is spendable by the embedded script and its unlocking script</li>
+							<li style = "font-weight: bold;">P2SH output is spendable by the embedded script ("redeem script") and its unlocking script</li>
 							<ul style = "list-style-type: circle;">
                 <li>Embedded script in input is verified against the hash-digest in the output script.</li>
 								<li>If preimage verification successful: Embedded script is run separately with the unlocking script operations loaded to the script machine stack.</li>
@@ -154,7 +154,6 @@
 				</ul>
 				<p></p>
 				<ul>
-				<li class="fragment">btw: P2SH-inside-P2SH is forbidden :)</li>
 			  </ul>
 				</div>
 				</div>

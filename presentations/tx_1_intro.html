@@ -38,7 +38,7 @@
 					</div>
 					<!-- 45% text & bulletpoint -->
 						<div class = "text_box"
-							 style = "width: 55%; font-size: 18px; margin: 0px 0 0 0">
+							 style = "width: 55%; font-size: 17.5px; margin: 0px 0 0 0">
 						<ul style = "margin: 0; padding: 0px; list-style-type: none;">
 
 							<!-- <hr style = "height:5px; visibility:hidden;"> -->
@@ -147,7 +147,7 @@
 				<ul>
 					<li>Push data to the stack: <span class="inline_code">0x47</span> <span class="inline_code">[71-byte-pubkey]</span></li>
 					<li>Manipulate stack: <span class="inline_code">OP_DROP</span>, <span class="inline_code">OP_DUP</span></li>
-					<li>Initiate flow control: <span class="inline_code">OP_IF</span></li>
+					<li>Control flow: <span class="inline_code">OP_IF</span></li>
 					<li>Do arithmetic: <span class="inline_code">OP_ADD</span></li>
 					<li>Crypto: <span class="inline_code">OP_HASH160</span>, <span class="inline_code">OP_CHECKSIG</span></li>
 					<li>Check timelocks: <span class="inline_code">OP_CHECKLOCKTIMEVERIFY</span>, <span class="inline_code">OP_CHECKSEQUENCEVERIFY</span></li>
@@ -354,7 +354,7 @@
         </div>
 
       <!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
-        <div class = "multi_text_box_container" style = "padding: 40px 0 0 0; width: 1270px;">
+        <div class = "multi_text_box_container" style = "padding: 20px 0 0 0; width: 1270px;">
           <!-- 60% div for formula and curve-->
           <div class = "" style = "width: 58%; font-size: 22px;">
             <img src="images/transaction_build/endorsement_build0.svg" class = "image" style = "z-index: -3;">
@@ -363,13 +363,17 @@
           </div>
           <!-- 45% text & bulletpoint -->
             <div class = "text_box"
-               style = "width: 45%; font-size: 22px; margin: 0px 0 0 0">
+               style = "width: 45%; font-size: 21px; margin: 0px 0 0 0">
             <ul style = "margin: 0; padding: 0px; list-style-type: none;">
 
               <li style = "font-weight: bold;">1) Build TX w/o input script</li>
               <ul style = "list-style-type: circle;">
                 <li>The transaction is populated with all elements which are signed by the endorsement.</li>
                 <li>For Sighash ALL, this includes all the TX elements except for the input script, which is left empty.</li>
+				<li>Except at the input that is being signed right now, where the previous output script is placed.</li>
+				<ul>
+					<li>Why? <a href="https://bitcointalk.org/index.php?topic=102487.msg1123444#msg1123444" class ="orange_link">Not even Pieter Wuille</a> knows</li>
+				</ul>
               </ul>
               <hr style = "height:2px; visibility:hidden;">
 
