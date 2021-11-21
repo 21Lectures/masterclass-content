@@ -39,8 +39,9 @@
               <li>Private key is the discrete log of the public key</li>
               <li>Signature verification: Does some equation hold?</li>
               <ul>
-              <li>Signer balances the equation on the field level</li>
-              <li>Verifier verifies on the group level (multiply everything with \(G\))</li>
+              <li>Signer balances the equation on the field level: easy</li>
+              <li>Verifier verifies on the group level (multiply everything with \(G\)): also easy</li>
+              <li>Forger has to balance the equation on the group level and break the discrete log problem: hard</li>
             </ul>
             <li>Helpful mental picture: Repeated addition of \(G\) throws you around randomly in \(\mathbb{F}_p\times\mathbb{F}_p\)</li>
             <li>Next up: Schnorr, ECDSA</li>
@@ -69,7 +70,7 @@
                 <li>In Bitcoin: <span class="inline_code">SHA256</span>, <span class="inline_code">RIPEMD160</span></li>
                 <li>\(\text{hash256}(x) = \text{SHA256}(\text{SHA256}(x))\)</li>
                 <ul>
-                  <li>dubious reasoning</li>
+                  <li>sometimes dubious reasoning</li>
                 </ul>
               </ul>
                 
@@ -334,6 +335,7 @@
                style = "width: 90%; font-size: 27px; margin: 60px 0px 0px 30px">
             <ul class = "math_normal" style = "margin: 20; padding: 0px;">
               <li>Security proofs rely on weaker assumptions</li>
+              <li>Signature size is a constant 64 bytes</li>
               <li>Signature linearity!</li>
               <ul>
                 <li>

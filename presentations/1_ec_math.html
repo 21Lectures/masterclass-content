@@ -61,7 +61,7 @@
 								<li>\(y^{2}=x^{3}+7\)</li>
 								<br>
 								<li style = "font-weight: 600;">Elliptic curve points:</li>
-								<li><span class="inline_code">EC-Point P(x,y)</span>on the elliptic curve fulfills the its curve equation.</li>
+								<li><span class="inline_code">EC-Point P(x,y)</span>on the elliptic curve fulfills the curve equation.</li>
 								<br>
 							</ul>
 						</div>
@@ -306,7 +306,7 @@
 								 style = "width: 50%; font-size: 24px; margin: 40px 0 0 0">
 							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
 
-								<li style = "font-weight: 600;">So far we established the groups structure of elliptic curves</li>
+								<li style = "font-weight: 600;">So far we established the group structure of elliptic curves</li>
 								<ul>
 									<li>Point addition</li>
 									<li>Identity element</li>
@@ -564,13 +564,13 @@
 									<li><span class="inline_code" style="font-weight:600;">\( P=G+G+G...G+G+G = k \circ G \)</span></li>
 									<ul>
 										<li>Given <span class="inline_code" style="font-weight:600;">\(P\)</span>, solve for  <span class="inline_code" style="font-weight:600;">\(k\)</span></li>
-										<li>Number of Points in Group: \(\approx p\) (<a href=https://en.wikipedia.org/wiki/Schoof%27s_algorithm#The_algorithm>Schoof's Algorithm</a>)</li>
+										<li>Number of Points \( \lvert\mathbb{G}\rvert \) in Group: \(\approx p\) (<a href=https://en.wikipedia.org/wiki/Schoof%27s_algorithm#The_algorithm>Schoof's Algorithm</a>)</li>
 										<li>EC multiplication is more like a black-box-operation than modulo-exponentiation over \(\mathbb{F}_p\)</li>
 										<hr style = "height:1px; visibility:hidden;">
 									</ul>
 										<div class = "fragment">
 											<ul>
-												<li style="font-weight:600;">Only general discrete log solutions are known for Elliptic Curves <span style="font-weight:300;">\(O(\sqrt{ \lvert\mathbb{G}\rvert })\)</span></li>
+												<li style="font-weight:600;">Only general discrete log solutions are known for Elliptic Curves <span style="font-weight:300;">\(\mathcal{O}(\sqrt{ \lvert\mathbb{G}\rvert })\)</span></li>
 												<ul>
 													<li>160bit (group order) / 80bit (security)</li>
 													<li>256bit (group order) / 128bit (security)</li>
@@ -620,7 +620,7 @@
 								</ul>
 								<div class="fragment">
 								<li style = "font-weight:600;">25 Group operations reduced to 6</li>
-								<li>\(O(\log n)\) Complexity</li>
+								<li>\(\mathcal{O}(\log n)\) Complexity</li>
 							</div>
 							</div>
 						</ul>
@@ -638,7 +638,7 @@
 					<div style = "position: absolute; top: 120px; left: 120px;">
 						<ul style = "list-style-type: none; margin: 0;">
 							<li class = "math_normal" style = "font-weight: 600; margin: 0 0 20px 0;">The secp256k1 EC point group:</li>
-							<li class = "math_normal">\(y^{2}=x^{3}+7\) over \(\mathbb{F}_{p}\) where \(p = 2^{256} - 2^{32} - 977\) (How big is \(p\)?)</li>
+							<li class = "math_normal">\(y^{2}=x^{3}+7\) over \(\mathbb{F}_{p}\) where \(p = 2^{256} - 2^{32} - 977\) (How big is \(2^{256}\)?)</li>
 							<li class = "math_normal">\(G = \:(\) <span style = "font-family: Roboto Mono; font-size: 20px;">79BE667E F9DCBBAC 55A06295 CE870B07 029BFCDB 2DCE28D9 59F2815B 16F81798,
 								<br>
 								\(\:\:\:\:\:\:\:\:\:\:\:\:\)
@@ -668,7 +668,7 @@
 					<div class = "multi_text_box_container" style = "padding: 24px 0 0 0;">
 						<!-- 45% text & bulletpoint -->
 						<div class = "text_box"
-								 style = "width: 50%; font-size: 24px; margin: 40px 0 0 0">
+								 style = "width: 80%; font-size: 24px; margin: 40px 0 0 0">
 							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
 
 								<li style = "font-weight: 600;">secp256k1 has some special properties that speed up some operations</li>
