@@ -1,0 +1,443 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Payment Channels</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/simple.css">
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/xcode.css">
+		<!-- Theme override for teachbitcoin -->
+		<link rel="stylesheet" href="css/teachbitcoin.css">
+		<!-- Google Font Roboto -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<!-- *********** BEGIN: Payment Channel Introductions *********** -->
+				<section class = "box">
+					<div class = "title">
+						Introduction to <span class = "title weight">Payment Channels</span>
+					</div>
+
+				<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+					<div class = "multi_text_box_container" style = "padding: 40px 0 0 0; width: 1270px;">
+						<!-- 60% div for formula and curve-->
+						<div class = "" style = "width: 58%; font-size: 22px;">
+							<img src="images/payment_channels/payment_channel_intro0.svg" class = "image" style = "z-index: -3;">
+							<img src="images/payment_channels/payment_channel_intro1.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/payment_channel_intro2.svg" class = "fragment image" style = "z-index: -3;">
+
+						</div>
+
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 50%; font-size: 24px; margin: 0px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+
+								<!-- <hr style = "height:5px; visibility:hidden;"> -->
+
+								<li style = "font-weight: bold;">Alice has funded the channel</li>
+								<ul style = "list-style-type: circle;">
+									<li>Alice signs a funding transaction which spends to a 2-of-2 multisig output.</li>
+									<li>Once the funding transaction is broadcast, the payment channel is open.</li>
+								</ul>
+								<hr style = "height:8px; visibility:hidden;">
+
+								<li style = "font-weight: bold;">Both parties sign the commitment TX.</li>
+								<ul style = "list-style-type: circle;">
+									<li>Requires signatures of both parties.</li>
+									<li>Commitment captures channel balance.</li>
+									<li>Is updated with each new channel payment.</li>
+									<li>Is not broadcasted until channel closure.</li>
+								</ul>
+
+							</ul>
+						</div>
+					</div><!-- End of 2 column container -->
+
+				</section>
+				<!-- *********** END: Payment Channel Introductions *********** -->
+
+				<!-- *********** BEGIN: Naive Channel *********** -->
+				<section class = "box">
+					<div class = "title">
+						 <span class = "title weight">Payment Channel:</span> Naive Implementation
+					</div>
+
+				<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+					<div class = "multi_text_box_container" style = "padding: 40px 0 0 0; width: 1270px;">
+						<!-- 60% div for formula and curve-->
+						<div class = "" style = "width: 58%; font-size: 22px;">
+							<img src="images/beijing_meetup_july2018/naive_channel0.svg" class = "image" style = "z-index: -3;">
+							<img src="images/beijing_meetup_july2018/naive_channel1.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/beijing_meetup_july2018/naive_channel2.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/beijing_meetup_july2018/naive_channel3.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/beijing_meetup_july2018/naive_channel4.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/beijing_meetup_july2018/naive_channel5.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/beijing_meetup_july2018/naive_channel6.svg" class = "fragment image" style = "z-index: -3;">
+					</div>
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 45%; font-size: 24px; margin: 0px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+
+								<!-- <hr style = "height:5px; visibility:hidden;"> -->
+
+								<li style = "font-weight: bold;">Funding TX and Commitment TX 1</li>
+								<ul style = "list-style-type: circle;">
+									<li>Funding TX signed by A</li>
+									<li>Commitment TX 1 signed by both parties</li>
+
+								</ul>
+								<hr style = "height:5px; visibility:hidden;">
+
+								<li style = "font-weight: bold;">Valid Channel Close</li>
+								<ul style = "list-style-type: circle;">
+									<li>Latest commitment TX is broadcast by either party</li>
+								</ul>
+								<hr style = "height:5px; visibility:hidden;">
+
+								<li style = "font-weight: bold;">Problem: Invalid Channel Close</li>
+								<ul style = "list-style-type: circle;">
+									<li>Nothing prevents either party from broadcasting old state</li>
+								</ul>
+								<hr style = "height:5px; visibility:hidden;">
+
+							</ul>
+						</div>
+
+					</div><!-- End of 2 column container -->
+
+				</section>
+				<!-- *********** END: Naive Channel *********** -->
+
+				<!-- *********** BEGIN: RSMC *********** -->
+				<section class = "box">
+					<div class = "title">
+						 <span class = "title weight">Revocable Sequence Maturity Contract</span>
+					</div>
+
+				<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+					<div class = "multi_text_box_container" style = "padding: 40px 0 0 0; width: 1270px;">
+						<!-- 60% div for formula and curve-->
+						<div class = "" style = "width: 58%; font-size: 22px;">
+							<img src="images/payment_channels/rsmc_script0.svg" class = "image" style = "z-index: -3;">
+							<img src="images/payment_channels/rsmc_script1.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/rsmc_script2.svg" class = "fragment image" style = "z-index: -3;">
+					</div>
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 40%; font-size: 24px; margin: 0px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+								<li style = "font-weight: bold;">Misnomer: not really revocable</li>
+								<li style = "font-weight: bold;">Spendable after time-out</li>
+								<ul style = "list-style-type: circle;">
+									<li>RSMC A is spendable by A after a delay</li>
+								</ul>
+								<hr style = "height:5px; visibility:hidden;">
+
+								<li style = "font-weight: bold;">Spendable by secret R</li>
+								<ul style = "list-style-type: circle;">
+									<li>Public key R is derived as:<br><span class="inline_code">\(R=R_\text{loc}+R_\text{rem}=(r_\text{loc}+r_\text{rem})\text{G}\)</span></li>
+									<li>Public key R is spendable with:<br><span class="inline_code">\(r_\text{loc}, r_\text{rem}\)</span></li>
+									<li>\(r_\text{rem}\) is revealed by counterparty as revocation</li>
+								</ul>
+								<hr style = "height:5px; visibility:hidden;">
+
+								<li style = "font-weight: bold;">A party can revoke its RSMC output:</li>
+								<ul style = "list-style-type: circle;">
+									<li>By sharing its secret with counterparty.</li>
+								</ul>
+								<hr style = "height:5px; visibility:hidden;">
+
+
+							</ul>
+						</div>
+
+					</div><!-- End of 2 column container -->
+
+				</section>
+				<!-- *********** END: RSMC *********** -->
+
+				<!-- *********** BEGIN: RSMC Channel *********** -->
+				<section class = "box">
+					<div class = "title">
+						 <span class = "title weight">Payment Channel</span> with RSMC's
+					</div>
+
+				<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+					<div class = "multi_text_box_container" style = "padding: 40px 0 0 0; width: 1270px;">
+						<!-- 60% div for formula and curve-->
+						<div class = "" style = "width: 58%; font-size: 22px;">
+							<img src="images/beijing_meetup_july2018/RSMC_channel0.svg" class = "image" style = "z-index: -3;">
+							<img src="images/beijing_meetup_july2018/RSMC_channel1.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/beijing_meetup_july2018/RSMC_channel2.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/beijing_meetup_july2018/RSMC_channel3b.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/beijing_meetup_july2018/RSMC_channel4.svg" class = "fragment image" style = "z-index: -3;">
+
+					</div>
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 40%; font-size: 24px; margin: 0px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+
+								<!-- <hr style = "height:5px; visibility:hidden;"> -->
+
+								<li style = "font-weight: bold;">Old states are revoked</li>
+								<ul style = "list-style-type: circle;">
+									<li>RSMC can be spent by counterparty</li>
+								</ul>
+								<hr style = "height:5px; visibility:hidden;">
+
+								<li style = "font-weight: bold;">Old broadcast states are swept</li>
+								<ul style = "list-style-type: circle;">
+									<li>Penalty TX by counterparty broadcast</li>
+								</ul>
+								<hr style = "height:5px; visibility:hidden;">
+
+								<li style = "font-weight: bold;">Chain needs to be watched</li>
+								<ul style = "list-style-type: circle;">
+									<li>Both parties must monitor chain for invalid commitment transactions</li>
+								</ul>
+								<hr style = "height:5px; visibility:hidden;">
+
+								<li style = "font-weight: bold;">Watchtower</li>
+								<ul style = "list-style-type: circle;">
+									<li>Channel participant outsources the monitoring of commitment transactions</li>
+								</ul>
+								<hr style = "height:5px; visibility:hidden;">
+
+							</ul>
+						</div>
+
+					</div><!-- End of 2 column container -->
+
+				</section>
+				<!-- *********** END: RSMC Channel *********** -->
+
+				<!-- *********** BEGIN: Routing Introduction *********** -->
+				<section class = "box">
+					<div class = "title">
+						Introduction to <span class = "title weight">Payment Channel Routing</span>
+					</div>
+
+				<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+					<div class = "multi_text_box_container" style = "padding: 40px 0 0 0; width: 1270px;">
+						<!-- 60% div for formula and curve-->
+						<div class = "" style = "width: 58%; font-size: 22px;">
+							<img src="images/payment_channels/routing_overview0.svg" class = "image" style = "z-index: -3;">
+							<img src="images/payment_channels/routing_overview1.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/routing_overview2.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/routing_overview3.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/routing_overview4.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/routing_overview5.svg" class = "fragment image" style = "z-index: -3;">
+						</div>
+
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 50%; font-size: 22px; margin: 0px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+
+								<!-- <hr style = "height:5px; visibility:hidden;"> -->
+
+								<li style = "font-weight: bold;">1) Alice wants to send a payment to Dave.</li>
+								<ul style = "list-style-type: circle;">
+									<li>Dave sends <span class="inline_code">HASH160(payment_preimage)</span><br>to Alice, for a unique <span class="inline_code">payment_preimage</span></li>
+								</ul>
+								<hr style = "height:8px; visibility:hidden;">
+
+								<li style = "font-weight: bold;">2) Alice constructs a route to Dave.</li>
+								<ul style = "list-style-type: circle;">
+									<li>Onion routes <span class="inline_code">HASH160(payment_preimage)</span> along route.</li>
+								</ul>
+								<hr style = "height:8px; visibility:hidden;">
+
+								<li style = "font-weight: bold;">3) Channels update commitment with <span class="inline_code">htlc</span>.</li>
+								<ul style = "list-style-type: circle;">
+									<li>Hash time locked contract represents<br>a "pending" amount/output. Should be reconciled back into new commitment transactions.</li>
+								</ul>
+								<hr style = "height:8px; visibility:hidden;">
+
+								<li style = "font-weight: bold;">4) Dave unlocks <span class="inline_code">htlc</span> with <span class="inline_code">payment_preimage</span>.</li>
+								<ul style = "list-style-type: circle;">
+									<li>Preimage is propgated backwards<br>through payment route: atomicity!</li>
+									<li><span class="inline_code">htlc</span>'s are settled and commitment tx is updated.</li>
+								</ul>
+								<hr style = "height:8px; visibility:hidden;">
+
+							</ul>
+						</div>
+					</div><!-- End of 2 column container -->
+
+				</section>
+				<!-- *********** END: Routing Introduction *********** -->
+
+				<!-- *********** BEGIN: Channel close with HTLC *********** -->
+				<section class = "box">
+					<div class = "title">
+						Closing a channel with <span class = "title weight">HTLC outputs</span>
+					</div>
+
+				<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+					<div class = "multi_text_box_container" style = "padding: 40px 0 0 0; width: 1355px;">
+						<!-- 60% div for formula and curve-->
+						<div class = "" style = "width: 58%; font-size: 22px;">
+							<img src="images/payment_channels/htlc_close_0.svg" class = "image" style = "z-index: -3;">
+							<img src="images/payment_channels/htlc_close_1.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/htlc_close_2.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/htlc_close_3.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/htlc_close_4.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/htlc_close_5.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/htlc_close_6.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/htlc_close_7.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/htlc_close_8.svg" class = "fragment image" style = "z-index: -3;">
+						</div>
+
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 45%; font-size: 22px; margin: 0px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+
+								<!-- <hr style = "height:5px; visibility:hidden;"> -->
+
+								<li style = "font-weight: bold;">Bob closes channel with sent HTLC's</li>
+								<ul style = "list-style-type: circle;">
+									<li>A) HTLC spendable by timeout transaction<br>after htlc timeout.</li>
+									<ul>
+										<li style="font-style:italic;">HTLC & RSMC B revocable with <span class="inline_code">secret r</span></li>
+									</ul>
+									<li>B) HTLC immediately spendable by Charlie with <span class="inline_code">payment_preimage</span></li>
+								</ul>
+								<hr style = "height:8px; visibility:hidden;">
+
+								<li style = "font-weight: bold;">Charlie closes channel with received HTLC's</li>
+								<ul style = "list-style-type: circle;">
+									<li>A) HTLC spendable with success transaction<br>with <span class="inline_code">payment_preimage</span>.</li>
+									<ul>
+										<li style="font-style:italic;">HTLC & RSMC C revocable with <span class="inline_code">secret r</span></li>
+									</ul>
+									<li>B) HTLC spendable by Bob after HTLC timeout.
+								</ul>
+								<hr style = "height:8px; visibility:hidden;">
+
+								<li style = "font-weight: bold;">Timeout & Success Transactions:</li>
+								<ul style = "list-style-type: circle;">
+									<li>Two-stage design.</li>
+									<li>Enables both HTLC timeout and RSMC delay.</br>
+								</ul>
+
+							</ul>
+						</div>
+					</div><!-- End of 2 column container -->
+
+				</section>
+				<!-- *********** BEGIN: Channel close with HTLC *********** -->
+
+				<!-- *********** BEGIN: Closer look: HTLC script *********** -->
+				<section class = "box">
+					<div class = "title">
+						Closer look: <span class = "title weight">HTLC scripts</span>
+					</div>
+
+				<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+					<div class = "multi_text_box_container" style = "padding: 40px 0 0 0; width: 1355px;">
+						<!-- 60% div for formula and curve-->
+						<div class = "" style = "width: 58%; font-size: 22px;">
+							<img src="images/payment_channels/htlc_script_0.svg" class = "image" style = "z-index: -3;">
+							<img src="images/payment_channels/htlc_script_1.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/htlc_script_2.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/htlc_script_3.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/htlc_script_4.svg" class = "fragment image" style = "z-index: -3;">
+							<img src="images/payment_channels/htlc_script_5.svg" class = "fragment image" style = "z-index: -3;">
+						</div>
+
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 42%; font-size: 22px; margin: 40px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+
+								<!-- <hr style = "height:5px; visibility:hidden;"> -->
+
+								<li style = "font-weight: bold;">HTLC(SENT) output spendable by:</li>
+								<ul style = "list-style-type: circle;">
+									<li>Bob: After HTLC timeout: Presigned timeout TX</li>
+									<li>Charlie: Payment preimage & HTLC receiver’s signature</li>
+									<li>Charlie: Revocation signature & public key</li>
+								</ul>
+								<hr style = "height:8px; visibility:hidden;">
+
+								<li style = "font-weight: bold;">HTLC(RECV) output spendable by:</li>
+								<ul style = "list-style-type: circle;">
+									<li>Charlie: Payment preimage & success TX</li>
+									<li>Bob: After HTLC timeout: HTLC sender’s signature</li>
+									<li>Bob: Revocation signature & public key</li>
+								</ul>
+								<hr style = "height:8px; visibility:hidden;">
+
+							</ul>
+						</div>
+					</div><!-- End of 2 column container -->
+
+				</section>
+				<!-- *********** END: Closer look: HTLC script *********** -->
+
+      </div><!-- END: Slides Div -->
+		</div><!-- END: Reveal Div -->
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/math/math.js', async: true }
+				],
+
+				math: {
+					mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+					config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+				},
+
+				previewLinks: true,
+
+				// Push each slide change to the browser history
+				history: true,
+
+				// Enable keyboard shortcuts for navigation
+				keyboard: true,
+
+				// Enables touch navigation on devices with touch input
+				overview: false,
+				touch: false,
+
+				// The "normal" size of the presentation, aspect ratio will be preserved
+				// when the presentation is scaled to fit different resolutions. Can be
+				// specified using percentage units.
+				width: 1366,
+			  height: 768,
+				// Factor of the display size that should remain empty around the content
+				margin: 0.05,
+
+				// Bounds for smallest/largest possible scale to apply to content
+				minScale: 0.2,
+				maxScale: 1.5
+			});
+			Reveal.configure({ slideNumber: true });
+		</script>
+	</body>
+</html>
