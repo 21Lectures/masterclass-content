@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1366px" height="768px" viewBox="0 0 1366 768" enable-background="new 0 0 1366 768" xml:space="preserve">
+<g enable-background="new    ">
+	<path fill="#C8D7E3" d="M441.75,572.876c2.75,0,5,2.25,5,5v62.702c0,2.75-2.25,5-5,5H96c-2.75,0-5-2.25-5-5v-62.702
+		c0-2.75,2.25-5,5-5H441.75z"/>
+</g>
+<g enable-background="new    ">
+	<path fill="#C8D7E3" d="M858.125,572.876c2.75,0,5,2.25,5,5v62.702c0,2.75-2.25,5-5,5h-345.75c-2.75,0-5-2.25-5-5v-62.702
+		c0-2.75,2.25-5,5-5H858.125z"/>
+</g>
+<g enable-background="new    ">
+	<path fill="#C8D7E3" d="M1273.125,572.876c2.75,0,5,2.25,5,5v62.702c0,2.75-2.25,5-5,5h-345.75c-2.75,0-5-2.25-5-5v-62.702
+		c0-2.75,2.25-5,5-5H1273.125z"/>
+</g>
+<g enable-background="new    ">
+	<path fill="#2D4E6E" d="M447.5,383.5c0,2.762-2.239,5-5,5h-347c-2.761,0-5-2.238-5-5v-63c0-2.761,2.239-5,5-5h347
+		c2.761,0,5,2.239,5,5V383.5z"/>
+</g>
+<g enable-background="new    ">
+	<path fill="#2D4E6E" d="M863.5,383.5c0,2.762-2.238,5-5,5h-347c-2.761,0-5-2.238-5-5v-63c0-2.761,2.239-5,5-5h347
+		c2.762,0,5,2.239,5,5V383.5z"/>
+</g>
+<g enable-background="new    ">
+	<path fill="#2D4E6E" d="M1277.5,383.5c0,2.762-2.238,5-5,5h-347c-2.762,0-5-2.238-5-5v-63c0-2.761,2.238-5,5-5h347
+		c2.762,0,5,2.239,5,5V383.5z"/>
+</g>
+<rect x="91" y="273.099" fill="none" width="355.75" height="34.502"/>
+<text transform="matrix(1 0 0 1 201.3643 291.8486)" font-family="'RobotoMono-Bold'" font-size="25">Heartbeat</text>
+<rect x="507" y="273.099" fill="none" width="356.542" height="34.502"/>
+<text transform="matrix(1 0 0 1 610.2583 291.8486)" font-family="'RobotoMono-Bold'" font-size="25">New Blocks</text>
+<rect x="923.299" y="273.099" fill="none" width="351.263" height="34.502"/>
+<text transform="matrix(1 0 0 1 978.9102 291.8486)" font-family="'RobotoMono-Bold'" font-size="25">New Transactions</text>
+<rect x="447.5" y="174.1" fill="none" width="475.799" height="80"/>
+<text transform="matrix(1 0 0 1 557.8794 192.8496)"><tspan x="0" y="0" font-family="'RobotoMono-Bold'" font-size="25">Libbitcoin-server</tspan><tspan x="-30.005" y="30" font-family="'RobotoMono-Regular'" font-size="25">Subscription Services</tspan></text>
+<rect x="469.25" y="735.298" fill="none" width="433.5" height="60.702"/>
+<text transform="matrix(1 0 0 1 550.978 754.0479)" font-family="'RobotoMono-Bold'" font-size="25">Client Application</text>
+<rect x="91" y="341.649" fill="none" width="358.751" height="38.703"/>
+<text transform="matrix(1 0 0 1 125.1519 358.1489)"><tspan x="0" y="0" fill="#FFFFFF" font-family="'RobotoMono-Regular'" font-size="22">zmq::socket::</tspan><tspan x="171.628" y="0" fill="#FFFFFF" font-family="'RobotoMono-Bold'" font-size="22">publisher</tspan></text>
+<rect x="94.135" y="600.648" fill="none" width="352.179" height="38.702"/>
+<text transform="matrix(1 0 0 1 118.3999 617.1484)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="22">zmq::socket::</tspan><tspan x="171.628" y="0" font-family="'RobotoMono-Bold'" font-size="22">subscriber</tspan></text>
+<rect x="507" y="341.649" fill="none" width="358.751" height="38.703"/>
+<text transform="matrix(1 0 0 1 541.1519 358.1489)"><tspan x="0" y="0" fill="#FFFFFF" font-family="'RobotoMono-Regular'" font-size="22">zmq::socket::</tspan><tspan x="171.627" y="0" fill="#FFFFFF" font-family="'RobotoMono-Bold'" font-size="22">publisher</tspan></text>
+<rect x="921" y="341.649" fill="none" width="358.751" height="38.703"/>
+<text transform="matrix(1 0 0 1 955.1523 358.1489)"><tspan x="0" y="0" fill="#FFFFFF" font-family="'RobotoMono-Regular'" font-size="22">zmq::socket::</tspan><tspan x="171.627" y="0" fill="#FFFFFF" font-family="'RobotoMono-Bold'" font-size="22">publisher</tspan></text>
+<rect x="510.51" y="600.648" fill="none" width="352.179" height="38.702"/>
+<text transform="matrix(1 0 0 1 534.7749 617.1484)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="22">zmq::socket::</tspan><tspan x="171.627" y="0" font-family="'RobotoMono-Bold'" font-size="22">subscriber</tspan></text>
+<g enable-background="new    ">
+	
+		<image overflow="visible" opacity="0.44" width="113" height="52" xlink:href="9EE5242E7F10E06B.png"  transform="matrix(1 0 0 1 83.5 652.5)">
+	</image>
+	<g>
+		<path fill="#FFFFFF" d="M188.5,691.5c0,2.762-2.239,5-5,5h-88c-2.761,0-5-2.238-5-5v-27c0-2.762,2.239-5,5-5h88
+			c2.761,0,5,2.238,5,5V691.5z"/>
+		<path fill="none" stroke="#E15218" stroke-width="2" stroke-miterlimit="10" d="M188.5,691.5c0,2.762-2.239,5-5,5h-88
+			c-2.761,0-5-2.238-5-5v-27c0-2.762,2.239-5,5-5h88c2.761,0,5,2.238,5,5V691.5z"/>
+	</g>
+</g>
+<g>
+	<rect x="90.667" y="668.298" fill="none" width="98.333" height="46.404"/>
+	<text transform="matrix(1 0 0 1 97.8267 683.2969)" font-family="'RobotoMono-Bold'" font-size="20">receive</text>
+</g>
+<g>
+	<rect x="202.397" y="663.026" fill="none" width="283.603" height="99.351"/>
+	<text transform="matrix(1 0 0 1 202.3975 675.0254)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="16">subscriber automatically</tspan><tspan x="0" y="18" font-family="'RobotoMono-Regular'" font-size="16">queues msgs from publisher</tspan></text>
+</g>
+<g enable-background="new    ">
+	
+		<image overflow="visible" opacity="0.44" width="113" height="52" xlink:href="9EE5242E7F10E069.png"  transform="matrix(1 0 0 1 500.5 652.5)">
+	</image>
+	<g>
+		<path fill="#FFFFFF" d="M605.5,691.5c0,2.762-2.239,5-5,5h-88c-2.761,0-5-2.238-5-5v-27c0-2.762,2.239-5,5-5h88
+			c2.761,0,5,2.238,5,5V691.5z"/>
+		<path fill="none" stroke="#E15218" stroke-width="2" stroke-miterlimit="10" d="M605.5,691.5c0,2.762-2.239,5-5,5h-88
+			c-2.761,0-5-2.238-5-5v-27c0-2.762,2.239-5,5-5h88c2.761,0,5,2.238,5,5V691.5z"/>
+	</g>
+</g>
+<g>
+	<rect x="507.667" y="668.298" fill="none" width="98.333" height="46.404"/>
+	<text transform="matrix(1 0 0 1 514.8267 683.2969)" font-family="'RobotoMono-Bold'" font-size="20">receive</text>
+</g>
+<rect x="925.51" y="600.648" fill="none" width="352.18" height="38.702"/>
+<text transform="matrix(1 0 0 1 949.7754 617.1484)"><tspan x="0" y="0" font-family="'RobotoMono-Regular'" font-size="22">zmq::socket::</tspan><tspan x="171.627" y="0" font-family="'RobotoMono-Bold'" font-size="22">subscriber</tspan></text>
+<g enable-background="new    ">
+	
+		<image overflow="visible" opacity="0.44" width="113" height="52" xlink:href="9EE5242E7F10E06F.png"  transform="matrix(1 0 0 1 915.5 652.5)">
+	</image>
+	<g>
+		<path fill="#FFFFFF" d="M1020.5,691.5c0,2.762-2.238,5-5,5h-88c-2.762,0-5-2.238-5-5v-27c0-2.762,2.238-5,5-5h88
+			c2.762,0,5,2.238,5,5V691.5z"/>
+		<path fill="none" stroke="#E15218" stroke-width="2" stroke-miterlimit="10" d="M1020.5,691.5c0,2.762-2.238,5-5,5h-88
+			c-2.762,0-5-2.238-5-5v-27c0-2.762,2.238-5,5-5h88c2.762,0,5,2.238,5,5V691.5z"/>
+	</g>
+</g>
+<g>
+	<rect x="922.667" y="668.298" fill="none" width="98.333" height="46.404"/>
+	<text transform="matrix(1 0 0 1 929.8262 683.2969)" font-family="'RobotoMono-Bold'" font-size="20">receive</text>
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="741.5" y1="387.5" x2="741.5" y2="390.5"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="6,6" x1="741.5" y1="396.5" x2="741.5" y2="557.5"/>
+		<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="741.5" y1="559.5" x2="741.5" y2="562.5"/>
+		<g>
+			<polygon points="741.5,572.876 735.809,558.947 741.5,562.252 747.19,558.947 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="6,6" x1="1156.5" y1="387.5" x2="1156.5" y2="562.5"/>
+		<g>
+			<polygon points="1156.5,572.876 1150.809,558.947 1156.5,562.252 1162.19,558.947 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="327.5" y1="387.5" x2="327.5" y2="390.5"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="6,6" x1="327.5" y1="396.5" x2="327.5" y2="557.5"/>
+		<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="327.5" y1="559.5" x2="327.5" y2="562.5"/>
+		<g>
+			<polygon points="327.5,572.876 321.809,558.947 327.5,562.252 333.19,558.947 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<path fill="#FFFFFF" d="M292.5,539.99c0,1.938-1.571,3.51-3.51,3.51H94.01c-1.938,0-3.51-1.571-3.51-3.51V424.01
+		c0-1.938,1.571-3.51,3.51-3.51h194.98c1.938,0,3.51,1.571,3.51,3.51V539.99z"/>
+	<path fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" d="M292.5,539.99c0,1.938-1.571,3.51-3.51,3.51H94.01
+		c-1.938,0-3.51-1.571-3.51-3.51V424.01c0-1.938,1.571-3.51,3.51-3.51h194.98c1.938,0,3.51,1.571,3.51,3.51V539.99z"/>
+</g>
+<g>
+	<path fill="#FFFFFF" d="M279.5,482.363c0,2.284-1.852,4.137-4.137,4.137H107.637c-2.285,0-4.137-1.853-4.137-4.137v-23.727
+		c0-2.284,1.852-4.137,4.137-4.137h167.727c2.285,0,4.137,1.853,4.137,4.137V482.363z"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M280,482.863c0,2.284-1.852,4.137-4.137,4.137H108.137
+		c-2.285,0-4.137-1.853-4.137-4.137v-23.727c0-2.284,1.852-4.137,4.137-4.137h167.727c2.285,0,4.137,1.853,4.137,4.137V482.863z"/>
+</g>
+<g>
+	<path fill="#FFFFFF" d="M279.5,525.363c0,2.284-1.852,4.137-4.137,4.137H107.637c-2.285,0-4.137-1.853-4.137-4.137v-23.727
+		c0-2.284,1.852-4.137,4.137-4.137h167.727c2.285,0,4.137,1.853,4.137,4.137V525.363z"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M280,524.863c0,2.284-1.852,4.137-4.137,4.137H108.137
+		c-2.285,0-4.137-1.853-4.137-4.137v-23.727c0-2.284,1.852-4.137,4.137-4.137h167.727c2.285,0,4.137,1.853,4.137,4.137V524.863z"/>
+</g>
+<rect x="123.684" y="464.469" fill="none" width="136.508" height="18.615"/>
+<text transform="matrix(1 0 0 1 156.1904 475.6377)" font-family="'RobotoMono-Regular'" font-size="14.8924">sequence</text>
+<rect x="123.684" y="506.147" fill="none" width="136.508" height="18.614"/>
+<text transform="matrix(1 0 0 1 160.6587 517.3164)" font-family="'RobotoMono-Regular'" font-size="14.8924">payload</text>
+<rect x="91" y="428.692" fill="none" width="201.875" height="38.392"/>
+<text transform="matrix(1 0 0 1 141.5293 439.1924)" font-family="'RobotoMono-Bold'" font-size="14">zmq::message</text>
+<line opacity="0.33" fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="292.5" y1="488" x2="323.5" y2="488"/>
+</svg>
