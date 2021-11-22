@@ -17,7 +17,42 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
+				<section class = "box">
+					<div class = "title">
+					  SPV: <span class = "title weight">Simplified payment verification</span>
+					</div>
+					<div class = "text_box math_normal"
+						 style = "width: 90%; font-size: 27px; margin: 60px 0px 0px 30px">
+					  <ul class = "math_normal" style = "margin: 20; padding: 0px;">
+						<li>Motivation: Light clients, e.g. a smartphone</li>
+						<ul>
+							<li>doesn't have the</li>
+							<ul>
+								<li>
+									Bandwith to receive full blocks
+								</li>
+								<li>
+									Processing power to validate full blocks
+								</li>
+							</ul>
+						</ul>
+					  <li>But we still want it to confirm payments to its address in a trust-minimizing way</li>
+					  <li>Three requirements:</li>
+					  <ul>
+						  <li>
+							  Sync the header chain
+						  </li>
+						  <li>
+							  Find candidate blocks
+						  </li>
+						  <li>
+							  Confirm receiving tx in block
+						  </li>
+					  </ul>
 
+					  </ul>
+					</div>
+					</section>
         <!-- *********** BEGIN: SPV header chain *********** -->
         <section class ="box">
           <div class = "title">
@@ -30,14 +65,7 @@
         <!-- *********** END: SPV header chain *********** -->
 
         <!-- *********** BEGIN: SPV header chain *********** -->
-        <section class ="box">
-          <div class = "title">
-            <span class = "weight">SPV Address Subscription</span>
-          </div>
-
-          <img src="images/bitcoinedge_tokyo/spv_address_subscription.svg" class = "image" style = "z-index: -3;">
-
-        </section>
+        
         <!-- *********** END: SPV header chain *********** -->
 
         <!-- *********** BEGIN: SPV merkle proof *********** -->
@@ -59,32 +87,74 @@
 				 style = "width: 90%; font-size: 27px; margin: 60px 0px 0px 30px">
 			  <ul class = "math_normal" style = "margin: 20; padding: 0px;">
 				<li>Naïve scriptPubKey subscription is terrible for privacy</li>
-				<li>BIP37 used Bloom filters to ensure a superset would be returned</li>
+				<div class="fragment">
+				<li>BIP37 used Bloom filters to ensure a superset of blocks would be returned</li>
 				<ul>
 					<li>
-						Multiple privacy leaks, almost unused today
+						Multiple privacy leaks
 					</li>
+					<li>Expensive upkeep on the server side</li>
+					<li>Almost unused today</li>
 				</ul>
+			</div>
+			<div class="fragment">
 				<li>Neutrino BIP157/158: a single compact filter per block (Golomb-Rice coding)</li>
 				<ul>
 					<li>
-						vastly improved privacy: could be any tx from the block
+						vastly improved privacy
 					</li>
 					<li>
-						very cheap on server-side: same filter for every SPV client
+						very cheap on server-side
 					</li>
 				</ul>
+			</div>
+			<div class="fragment">
 				<li>Factually the most-used SPV protocol:</li>
 				<ul>
 				<li>Electrum: Hash(scriptPubKey) subscription</li>
 				<li>Private until output appears</li>
 			  </ul>
+			</div>
 			  </ul>
 			</div>
 			</section>
         <!-- *********** END: SPV merkle proof *********** -->
 
-
+        <section class = "box">
+			<div class = "title">
+			  <span class = "title weight">Bloom filters</span>
+			</div>
+			<div class = "text_box math_normal"
+				 style = "width: 90%; font-size: 27px; margin: 60px 0px 0px 30px">
+			  <ul class = "math_normal" style = "margin: 20; padding: 0px;">
+				<li>Idea: create a bitmask of interesting addresses through suitable hash functions</li>
+				<li>Probabilistic data structure: Server returns a superset of interesting transactions</li>
+				</ul>
+				<img src="images/bloom_filter.png" width=500>
+				<ul class = "math_normal" style = "margin: 20; padding: 0px;">
+					<li>Construct and send it to server</li>
+				  <li>Problem: privacy / overhead tradeoffs are <a href="https://eprint.iacr.org/2014/763.pdf" class="orange_link">worse than expected</a></li>
+				  <li>Client can be fooled by a server tx-omission attack</li>
+				  </ul>
+			  </ul>
+			</div>
+			</section>
+			<section class = "box">
+				<div class = "title">
+				  <span class = "title weight">Neutrino compact block filters</span>
+				</div>
+				<div class = "text_box math_normal"
+					 style = "width: 90%; font-size: 27px; margin: 60px 0px 0px 30px">
+				  <ul class = "math_normal" style = "margin: 20; padding: 0px;">
+					<li>Golomb-Rice encoding creates a very compact filter of all addresses used in the block</li>
+					<li>2MB block \(\rightarrow\) 15kB filter \(rightarrow\) 70MB per month</li>
+					<li>Privacy: Ask one node for filters, another node for candidate block</li>
+					<li>Decentralization: Server upkeep is vastly reduced: One precomputed filter per block</li>
+					<li>No tx omission attacks</li>
+					<li>Partially rolled out in Bitcoin Core</li>
+				  </ul>
+				</div>
+				</section>
       </div><!-- END: Lecture Materials Div -->
 		</div><!-- END: Reveal Div -->
 
@@ -100,14 +170,14 @@
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-					// { src: 'plugin/math/math.js', async: true }
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					 { src: 'plugin/math/math.js', async: true }
 				],
 
-				// math: {
-				// 	mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
-				// 	config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
-				// },
+				math: {
+					mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+					config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+				},
 
 				previewLinks: false,
 
