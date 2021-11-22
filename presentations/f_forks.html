@@ -21,6 +21,28 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
+				<section class = "box">
+					<div class = "title">
+					  <span class = "title weight">Chain reorganizations</span>
+					</div>
+					<div class = "text_box math_normal"
+						 style = "width: 90%; font-size: 27px; margin: 60px 0px 0px 30px">
+					  <ul class = "math_normal" style = "margin: 20; padding: 0px;">
+						<li>Nodes follow "heaviest" chain: Most accumulated proof-of-work</li>
+					  <li>Reorg: Node discovers a new heaviest chain that excludes some previous blocks: Orphans</li>
+					  <li>Small reorgs are a somewhat regular phenomenon: Distributed nature of mining</li>
+					  <li>Probability for large reorg should be small</li>
+					  <ul>
+						  <li>Whitepaper has some calculations on this</li>
+					  </ul>
+					  <li>Reorg is a messy process: Undo all old transactions, redo new ones</li>
+					  <ul>
+						  <li>Risk of double-spend</li>
+						  <li>The messiest txs: coinbases \(\Rightarrow\) 100 block maturity rule</li>
+					  </ul>
+					  </ul>
+					</div>
+					</section>
 
 				<section class = "box">
 					<div class = "title">
@@ -33,24 +55,28 @@
 
 						<!-- 45% text & bulletpoint -->
 						<div class = "text_box"
-								 style = "width: 90%; font-size: 24px; margin: 0px 0 0 0">
+								 style = "width: 90%; font-size: 23px; margin: 0px 0 0 0">
 							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
 								<li style = "font-weight: bold;">Not to be confused with software forks</li>
 								<!-- <hr style = "height:5px; visibility:hidden;"> -->
-								<li style = "font-weight: bold;">Hard forks</li>
-								<ul style = "list-style-type: circle;">
-									<li><em>Enlarges</em> the set of valid transactions / blocks</li>
-									<li>Backwards-incompatible: Old nodes will reject transactions / blocks</li>
-									<li>High danger of chain split</li>
-								</ul>
-								<div  class ="fragment">
-								<li style = "font-weight: bold;">Soft forks</li>
-								<ul style = "list-style-type: circle;">
-									<li><em>Restricts</em> the set of valid transactions / blocks</li>
-									<li>Backwards-compatible: Old nodes will follow new chain</li>
-									<li>Needs large miner support</li>
-									<li>Criticisms: Technical debt, relaxed validation (Segwit softfork mechanism)</li>
-								</ul>
+								
+									<li style = "font-weight: bold;">Soft forks</li>
+									<ul style = "list-style-type: circle;">
+										<li><em>Restricts</em> the set of valid blocks</li>
+										<li>Backwards-compatible: Old nodes will follow new chain</li>
+										<li>Needs large miner support</li>
+										<li>Criticisms: Technical debt, relaxed validation (Segwit softfork mechanism)</li>
+									</ul>
+									<div  class ="fragment">
+									<li style = "font-weight: bold;">Hard forks</li>
+									<ul style = "list-style-type: circle;">
+										<li><em>Enlarges</em> the set of valid blocks</li>
+										<ul>
+											<li>Transaction and / or block validation rules</li>
+										</ul>
+										<li>Backwards-incompatible: Old nodes will reject transactions / blocks</li>
+										<li>High danger of chain split</li>
+									</ul>
 							</div>
 								<div class="fragment">
 									<li style = "font-weight: bold;">Contentious tradeoffs</li>
@@ -66,6 +92,55 @@
 					</div><!-- End of 2 column container -->
 
 				</section>
+				<section class = "box">
+					<div class = "title">
+						<span class = "title weight">Some Bitcoin forkology</span>
+					</div>
+					<div class = "multi_text_box_container" style = "padding: 40px 0 0 0; width: 1270px;">
+						<!-- 60% div for formula and curve-->
+
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 90%; font-size: 23px; margin: 0px 0 0 0">
+							<ul >
+								<li>Accidental hardforks</li>
+								<ul>
+									<li>OP_VER removed in July 2010</li>
+									<ul>
+										<li>Every upgrade could have been an accidental hardork</li>
+										<li>Luckily nobody ever used it</li>
+									</ul>
+									<div  class ="fragment">
+								<li>August 2010 value overflow bug created 184.5 billioin bitcoins</li>
+								<ul>
+									<li>
+										Chainsplit of 51 blocks
+									</li>
+									<li>
+										UTXO used as input <a href="https://blockstream.info/address/17TASsYPbdLrJo3UDxFfCMu5GXmxFwVZSW" class="orange_link">remains unspent today</a>
+									</li>
+								</ul>
+							</div>
+							<div class="fragment">
+								<li>March 2013 accidental non-deterministic hardfork</li>
+								<ul>
+									<li>Migration from BerkeleyDB to LevelDB removed an unknown validation rule imposed by number of allowable concurrent DB locks</li>
+									<li>Chainsplit of 24 blocks</li></ul>
+								</div>
+							</ul>
+
+						</ul>
+						<ul class ="fragment">
+							<li>The early #YOLO days</li>
+							<ul>
+								<li>Six softforks, two hardforks in 2010 alone</li>
+								<li><span class="inline_code">git commit; git push</span> style</li>
+								<li>Multiple bugfixes that would have allowed anyone to spend any coin</li>
+							</ul>
+						</ul>
+							</div>
+							</div>
+					</section>
 
 				<!-- *********** BEGIN: Chain Forks *********** -->
 				<section class = "box">
@@ -110,11 +185,6 @@
 									<li>Requires modification of transaction signature algorithm</li>
 								</ul>
 								<hr style = "height:5px; visibility:hidden;">
-
-								<li style = "font-weight: bold;">Support new chain parameters required...</li>
-								<hr style = "height:5px; visibility:hidden;">
-
-
 							</ul>
 						</div>
 
@@ -137,7 +207,6 @@
 						<div class = "" style = "width: 58%; font-size: 22px;">
 							<img src="images/beijing_meetup_july2018/alt_sighash0.svg" class = "image" style = "z-index: -3;">
 							<img src="images/beijing_meetup_july2018/alt_sighash1.svg" class = "fragment image" style = "z-index: -3;">
-							<img src="images/beijing_meetup_july2018/alt_sighash2.svg" class = "fragment image" style = "z-index: -3;">
 
 					</div>
 						<!-- 45% text & bulletpoint -->
