@@ -164,6 +164,75 @@
             </ul>
           </div>
           </section>
+          <section class = "box">
+            <div class = "title">
+              <span class = "title weight">ECDSA I</span>
+            </div>
+            <div class = "text_box math_normal"
+                 style = "width: 90%; font-size: 27px; margin: 60px 0px 0px 30px">
+              <ul class = "math_normal" style = "margin: 20; padding: 0px;">
+                <li>Alice wants to sign with the \(a, P=aG\) keypair</li>
+                <li>Consider the equation \(uG+vP=kG\)</li>
+                <ul>
+                  <li>Claim: Easy to balance for Alice on the field level: \(u+va=k\), e.g. choose \(k, v\) randomly, and compute \(u\)</li>
+                  <li>Claim: Hard to balance if you don't know \(a\), because:</li>
+                  <ul>
+                    <li>
+                      Assume you could, then you can compute the private key \(a=\frac{k-u}{v}\)
+                    </li>
+                    <li>
+                      \(\Rightarrow\) as hard as discrete-log-problem
+                    </li>
+                  </ul>
+                </ul>
+                <li>
+                  Strategy: signature \((u,v,R=kG)\)
+                </li>
+                <li>
+                  Two remaining problems: No pre-commitment to \(R\), no message in there
+                </li>
+                <li>
+                  Two problems, two variables :)
+                </li>
+                <ul>
+                  <li>
+                    Set \(u=\frac{m}{s}\), message \(m\) (often called \(z\) in ECDSA)
+                  </li>
+                  <li>
+                    Set \(v=\frac{r}{s}\), where \(r\) is the x-coordinate of \(R\): pre-commitment to right-hand-side
+                  </li>
+                  <li>Next slide: compute \(s\), s.t. initial equation balances</li>
+                </ul>
+              </ul>
+              </ul>
+            </div>
+            </section>
+            <section class = "box">
+              <div class = "title">
+                <span class = "title weight">ECDSA II</span>
+              </div>
+              <div class = "text_box math_normal"
+                   style = "width: 90%; font-size: 27px; margin: 60px 0px 0px 30px">
+                <ul class = "math_normal" style = "margin: 20; padding: 0px;">
+                  <li>Compute necessary \(s\) such that \(uG+vP=kG\) balances</li>
+                  <li>The signer can do this on the field level: balance \(u+va=k\)</li>
+                  <li>\(\frac{m}{s} + \frac{r}{s}a =k\)</li>
+                  <li>\(s=k^{-1}(m+ra)\)</li>
+                  <li>Signature \((r, s)\), two scalars</li>
+                  <li>Verfication equation on top, verifier only checks x-coordinate of resulting EC point</li>
+                  <li>Exercise: Prove private-key extraction if you reuse \(k\)</li>
+                  <ul>
+                    <li>
+                      Playstation 3 hack
+                    </li>
+                    <li>
+                      In fact, requirements are much harder: vulnerabilities if you can predict single bits of \(k\)
+                    </li>
+                  </ul>
+                </ul>
+                </ul>
+              </div>
+              </section>
         <!-- *********** Begin: Pedersenn Commitment *********** -->
         <section class = "box">
           <div class = "title">
