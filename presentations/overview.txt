@@ -1,0 +1,84 @@
+Day 1
+    Morning
+        Pre-break
+            Course Intro
+            History of Bitcoin
+            Cryptography Basics:
+                Asymmetric cryptography
+                Digital signatures
+                Hash functions
+                Merkle Trees+
+        Post-break
+            Industry representative
+    Afternoon
+        Pre-break
+            Bitcoin's scripting language
+            UTXOs & Transactions
+        Post-break
+            Addresses
+            Wallets
+                Keys
+                HD Wallets
+                Seed Phrases & Passhphrases
+
+
+Day 2
+    Morning
+        Pre-break
+            The Mempool and the Fee Market
+            Blocks
+        Post-break
+            Proof-of-Work & Mining
+            Mining Pool FUD
+            The Blockchain
+            Consensus & Forks
+    Afternoon
+        Pre-break
+            Full Nodes, Light Clients
+            P2P Networking
+        Post-break
+            Privacy on Bitcoin
+            The Basics of the Lightning Network
+            Final Q & A
+
+
+- Exc: Try to find low hash values
+        https://onlinehashtools.com/generate-random-sha256-hash
+- Try to run a full node
+- Electrum exercises
+
+Concrete Goals:
+ - Become a power Bitcoin user
+   - I can make sense of information shown on block explorers
+   - I can interact with a power user wallet
+ - Be able to recognize bullshit arguments / projects / people
+ - Be able to help your grandma recover her lost Bitcoin
+
+
+Random stuff to include
+
+Difficulty, Hashrate
+What is special about 50 BTC => 50%
+
+When were softforks activated?
+https://bitcoinexplorer.org/node-details
+
+largest mempool transactions
+https://bitcoinexplorer.org/mempool-summary
+
+realization that everybody has a different mempool:
+compare:
+    https://bitcoinexplorer.org/mempool-summary
+    https://mempool.space
+    https://jochen-hoenicke.de/queue/#BTC,3m,weight
+    https://statoshi.info/d/000000020/memory-pool?orgId=1&from=now-30d
+
+hash rate distribution
+https://bitcoinexplorer.org/mining-summary
+
+SHA-1 collision bounty is still active!
+https://bitcoinexplorer.org/fun
+https://bitcoinexplorer.org/address/37k7toV1Nv4DfmQbmZ8KuZDQCYK9x5KpzP
+
+After explaining addresses, show Star Wars tx 
+https://bitcoinexplorer.org/tx/143a3d7e7599557f9d63e7f224f34d33e9251b2c23c38f95631b3a54de53f024
