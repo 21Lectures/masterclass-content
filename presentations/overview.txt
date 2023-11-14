@@ -1,6 +1,6 @@
 Day 1
     Morning
-        Pre-break
+        Pre-break: 34 Slides
             Course Intro
             History of Bitcoin
             Cryptography Basics:
@@ -13,13 +13,13 @@ Day 1
     Afternoon
         Pre-break
             Bitcoin's scripting language
-            UTXOs & Transactions
-        Post-break
             Addresses
+        Post-break
             Wallets
                 Keys
                 HD Wallets
                 Seed Phrases & Passhphrases
+            UTXOs & Transactions
 
 
 Day 2
@@ -42,20 +42,10 @@ Day 2
             Final Q & A
 
 
-- Exc: Try to find low hash values
-        https://onlinehashtools.com/generate-random-sha256-hash
-- Try to run a full node
-- Electrum exercises
-
-Concrete Goals:
- - Become a power Bitcoin user
-   - I can make sense of information shown on block explorers
-   - I can interact with a power user wallet
- - Be able to recognize bullshit arguments / projects / people
- - Be able to help your grandma recover her lost Bitcoin
-
-
 Random stuff to include
+
+Time-to-mine
+also on blockexplorer.org
 
 Difficulty, Hashrate
 What is special about 50 BTC => 50%
@@ -82,3 +72,12 @@ https://bitcoinexplorer.org/address/37k7toV1Nv4DfmQbmZ8KuZDQCYK9x5KpzP
 
 After explaining addresses, show Star Wars tx 
 https://bitcoinexplorer.org/tx/143a3d7e7599557f9d63e7f224f34d33e9251b2c23c38f95631b3a54de53f024
+
+Grep for "The Times" in Bitcoin Core repo
+
+RBF, CPFP
+
+mining scripting
+for word in $(cat /usr/share/dict/words); do
+line=$(echo -n $word; echo -n " "; echo $word | sha256sum); echo $line | grep " 0"  
+done
