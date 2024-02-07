@@ -2,13 +2,13 @@ FROM ubuntu:latest
 
 RUN apt-get update
 RUN apt-get -y install git wget python3-pip jq
-RUN wget https://github.com/libbitcoin/libbitcoin-explorer/releases/download/v3.2.0/bx-linux-x64-qrcode 
-RUN chmod +x bx-linux-x64-qrcode
-RUN cp bx-linux-x64-qrcode /usr/local/bin/bx
+RUN wget https://github.com/dspicher/bx-binary/raw/master/bx
+RUN chmod +x bx
+RUN cp bx /usr/local/bin/bx
 
 WORKDIR /home
-
 COPY requirements.txt requirements.txt
+COPY explorer.py explorer.py
 
 RUN pip3 install -r requirements.txt
 RUN python3 -m bash_kernel.install
