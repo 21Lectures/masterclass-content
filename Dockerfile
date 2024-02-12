@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 RUN apt-get update
 RUN apt-get -y install git wget python3-pip jq
-RUN wget https://github.com/dspicher/bx-binary/raw/master/bx
+RUN wget https://github.com/21lectures/bx-binary/raw/master/bx
 RUN chmod +x bx
 RUN cp bx /usr/local/bin/bx
 
