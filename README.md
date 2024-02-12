@@ -10,6 +10,8 @@ You need
 Make sure that `docker run hello-world` runs through successfully.
 
 ## Setup
+Either [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or [download](https://docs.github.com/en/repositories/working-with-files/using-files/downloading-source-code-archives) this repository.
+
 Afterwards, in the directory where this `README` is located, start the docker container with:
 ```bash
 docker-compose up
