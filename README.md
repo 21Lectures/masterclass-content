@@ -22,6 +22,9 @@ Afterwards, in the directory where this `README` is located, start the docker co
 ```bash
 docker-compose up
 ```
+
+, or `docker compose up` in case you installed Docker Desktop.
+
 A line of the output should contain a link of the form `http://127.0.0.1:8888/?token=<token>` that you can open to find the Jupyter notebook.
 
 ### If you have never used Jupyter notebooks
