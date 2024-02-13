@@ -5,6 +5,11 @@ services:
         build: .
         ports:
             - '8888:8888'
+        command: [
+            "bash",
+            "-c",
+            "find . -type f -name '*.ipynb' | xargs jupyter trust && jupyter notebook --ip 0.0.0.0 --allow-root"
+        ]
         volumes:
             - type: bind
               source: ${PWD}/exercises/
