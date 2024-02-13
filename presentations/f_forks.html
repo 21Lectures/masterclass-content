@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Wallets</title>
+		<title>Forks</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/simple.css">
@@ -46,7 +46,7 @@
 
 				<section class = "box">
 					<div class = "title">
-						<span class = "title weight">Chain Forks</span>
+						<span class = "title weight">Consensus & Chain Forks</span>
 					</div>
 
 				<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
@@ -92,6 +92,37 @@
 					</div><!-- End of 2 column container -->
 
 				</section>
+
+				<section class = "box">
+					<div class = "title">
+						<span class = "title weight">Softfork Activation</span>
+					</div>
+
+				<!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+					<div class = "multi_text_box_container" style = "padding: 40px 0 0 0; width: 1270px;">
+						<!-- 60% div for formula and curve-->
+
+						<!-- 45% text & bulletpoint -->
+						<div class = "text_box"
+								 style = "width: 90%; font-size: 23px; margin: 0px 0 0 0">
+							<ul style = "margin: 0; padding: 0px; list-style-type: none;">
+								<li>"Needs large miner support". How do we measure it?</li>
+								<li>BIP34 counted up the block version to signal readiness</li>
+								<ul>
+									<li>v3: Strict signature DER encoding</li>
+									<li>v4: OP_CLTV</li>
+									<li>:( one at a time, irrevocable (?), limited space</li>
+								</ul>
+								<li>BIP9 bit field interpretation of block version, 29 bits left</li>
+								<ul>
+									<li>activation is a state machine</li>
+								</ul>
+								</ul>
+								</div>
+								</div>
+								<img src="images/bip9activation.jpg" width=700>
+								</section>
+
 				<section class = "box">
 					<div class = "title">
 						<span class = "title weight">Some Bitcoin forkology</span>
@@ -141,6 +172,19 @@
 							</div>
 							</div>
 					</section>
+					<section class = "box">
+						<div class = "title">
+							<span class = "title weight">Historical Forks</span>
+						</div>
+						<div class = "multi_text_box_container" style = "padding: 40px 0 0 0; width: 1270px;">
+							<!-- 60% div for formula and curve-->
+	
+							<!-- 45% text & bulletpoint -->
+							<div class = "text_box"
+									 style = "width: 90%; font-size: 23x; margin: 0px 0 0 0">
+								<ul >
+									<li><a href="https://blog.bitmex.com/a-complete-history-of-bitcoins-consensus-forks-2022-update/">BitMex Research blogpost</a></li>
+									</ul></div></div></section>
 
 				<!-- *********** BEGIN: Chain Forks *********** -->
 				<section class = "box">
