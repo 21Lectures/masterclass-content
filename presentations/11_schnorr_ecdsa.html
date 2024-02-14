@@ -76,6 +76,34 @@
                 
             </div>
             </section>
+
+            <section class = "box">
+              <div class = "title">
+                Building up Schnorr signatures
+              </div>
+          
+                    <!-- 2 column container -->
+                    <!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+                    <div class = "multi_text_box_container" style = "padding: 50px 0 0 0;">
+                      <!-- 45% text & bulletpoint -->
+                      <div class = "text_box math_normal"
+                           style = "width: 85%; font-size: 27px; margin: 60px 0 0 0">
+                        <ul class = "math_normal" style = "margin: 20; padding: 0px;">
+                          <li>Goal: Prove knowledge of private key without revealing it</li>
+                          <li>Two ingredients</li>
+                          <ul><li>
+                            Commitment scheme
+                          </li>
+                          <ul><li>Hiding</li><li>Binding</li></ul>
+                        <li>Challenge-response</li></ul>
+                        <li>Blackboard!</li>
+                        </ul>
+                      </div>
+
+                    </div><!-- End of 2 column container -->
+                  </section>
+
+
    <section class = "box">
     <div class = "title">
       Motivating Schnorr:<span class = "title weight"> ZKP of a discrete log</span>
@@ -132,7 +160,7 @@
 								 style = "width: 90%; font-size: 27px; margin: 60px 0 0 30px">
 							<ul class = "math_normal" style = "margin: 20; padding: 0px;">
 								<li>As we have seen, the temporal order of \(R\rightarrow e\) is crucial</li>
-                <li>Fiat-Shamir heuristic: construct a signature scheme by using a random oracle to ensure this</li>
+                <li>Fiat-Shamir transform: construct a signature scheme by using a random oracle to ensure this</li>
 								<ul class = "math_normal">
                   <li>cryptographic hash function \(H\)</li>
                 </ul>
