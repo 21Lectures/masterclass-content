@@ -1,0 +1,5 @@
+tx_1_intro:
+    - 1: double hashing prevents length extension attacks
+    - 2: note the large size of the witness
+tx_2_multisig:
+    - 

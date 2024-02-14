@@ -62,7 +62,8 @@
 							<li>The signature</li>
 							<ul>
 							<li>Signer: random \(k \Rightarrow\) practically infinite valid signatures</li>
-							<li><em>Everybody</em>: change data push opcodes: OP_48 == OP_4C [48] == OP_4D [4800]</li>
+							<li>Everybody: \((r,s)\) a valid ECDSA signature => \((r,-s)\) also a valid (but different!) signature</li>
+							<li>Everybody: change data push opcodes: OP_48 == OP_4C [48] == OP_4D [4800]</li>
 							<ul><li><a href="https://arxiv.org/pdf/1403.6676.pdf" class="orange_link">Mt. Gox hack?</a></li></ul></ul></div>
 						  </ul>
 						</div>
@@ -356,7 +357,7 @@
 							<li>P2SH(P2WPKH)</li>
 							<li>P2SH(P2WSH)</li>
 						</ul>
-						<li>Pre-BIP16 vs. Pre-Segwit vs. Post-Segwit nodes</li>
+						<li>Pre-BIP16 nodes vs. Pre-Segwit nodes vs. Post-Segwit nodes would all have different script runs, but all will accept the spend!</li>
 						</div>
 
 						</ul>
