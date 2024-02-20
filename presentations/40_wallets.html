@@ -37,6 +37,7 @@
         <div class = "text_box math_normal"
              style = "width: 90%; font-size: 27px; margin: 60px 0px 0px 30px">
           <ul class = "math_normal" style = "margin: 20; padding: 0px;">
+            <li>Good terminology?</li>
             <li>A collection of private keys</li>
             <li>Bitcoin Core: Independently randomly drawn</li>
             <ul>
@@ -59,62 +60,6 @@
         </div>
         </section>
       <!-- *********** END: Bitcoin P2PKH Address *********** -->
-
-      <!-- *********** BEGIN: Bitcoin Private Key WIF format *********** -->
-      <section class = "box">
-        <div class = "title">
-          Private Key - <span class = "title weight">Wallet Import Format</span>
-        </div>
-
-        <!-- Derivation Graphic -->
-        <img src="images/wallets/wif_format0.svg" class = "image" style = "z-index: -1;">
-				<img src="images/wallets/wif_format1.svg" class = "fragment image" style = "z-index: -1;">
-
-        <!-- 2 column container -->
-        <!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
-        <div class = "multi_text_box_container" style = "padding: 40px 0 0 0; width: 1270px;">
-          <!-- 45% div for formula and curve-->
-          <div class = "" style = "width: 55%; font-size: 22px;">
-            <div style ="text-align: center;">
-              The WIF private key provides information
-							to recreate a private/public key pair.
-            </div>
-          </div>
-          <!-- 45% text & bulletpoint -->
-          <div class = "text_box"
-               style = "width: 37%; font-size: 20px; margin: 0px 0 0 0">
-            <ul style = "margin: 0; padding: 0px; list-style-type: none;">
-              <li style = "font-weight: bold;">Bitcoin Hash Checksum</li>
-                <ul>
-									<li><span class="inline_code">double SHA256(input)<span></li>
-									<li>First 4 bytes of digest.</li>
-                  <li>Version byte:
-                    <ul>
-                      <li>Mainnet: 0x80</li>
-                      <li>Testnet: 0xEF</li>
-                    </ul>
-                  </li>
-                  <li>Compression Marker (0x01) ommited if associated public key is uncompressed</li>
-                </ul>
-                <hr style = "height:3px; visibility:hidden;">
-
-              <li style = "font-weight: bold;">Base58 Encoding</li>
-								<ul>
-								<li>Base58 encoded WIF begins with:</li>
-                  <ul>
-                    <li>Mainnet/Compressed: K/L</li>
-                    <li>Mainnet/Uncompressed: 5</li>
-                    <li>Testnet/Compressed: C</li>
-                    <li>Testnet/Uncompressed: 9</li>
-                  </ul>
-								</ul>
-              <hr style = "height:3px; visibility:hidden;">
-            </ul>
-          </div>
-        </div><!-- End of 2 column container -->
-
-      </section>
-      <!-- *********** END: Bitcoin Private Key WIF format *********** -->
 
       <!-- *********** BEGIN: HD Entropy to Mnemonics *********** -->
       <section class = "box">
@@ -727,6 +672,62 @@
           </ul>
         </div>
         </section>
+
+        <!-- *********** BEGIN: Bitcoin Private Key WIF format *********** -->
+        <section class = "box">
+          <div class = "title">
+            Private Key - <span class = "title weight">Wallet Import Format</span>
+          </div>
+  
+          <!-- Derivation Graphic -->
+          <img src="images/wallets/wif_format0.svg" class = "image" style = "z-index: -1;">
+          <img src="images/wallets/wif_format1.svg" class = "fragment image" style = "z-index: -1;">
+  
+          <!-- 2 column container -->
+          <!-- 45% div for formula and curve--><!-- 45% text & bulletpoint -->
+          <div class = "multi_text_box_container" style = "padding: 40px 0 0 0; width: 1270px;">
+            <!-- 45% div for formula and curve-->
+            <div class = "" style = "width: 55%; font-size: 22px;">
+              <div style ="text-align: center;">
+                The WIF private key provides information
+                to recreate a private/public key pair.
+              </div>
+            </div>
+            <!-- 45% text & bulletpoint -->
+            <div class = "text_box"
+                 style = "width: 37%; font-size: 20px; margin: 0px 0 0 0">
+              <ul style = "margin: 0; padding: 0px; list-style-type: none;">
+                <li style = "font-weight: bold;">Bitcoin Hash Checksum</li>
+                  <ul>
+                    <li><span class="inline_code">double SHA256(input)<span></li>
+                    <li>First 4 bytes of digest.</li>
+                    <li>Version byte:
+                      <ul>
+                        <li>Mainnet: 0x80</li>
+                        <li>Testnet: 0xEF</li>
+                      </ul>
+                    </li>
+                    <li>Compression Marker (0x01) ommited if associated public key is uncompressed</li>
+                  </ul>
+                  <hr style = "height:3px; visibility:hidden;">
+  
+                <li style = "font-weight: bold;">Base58 Encoding</li>
+                  <ul>
+                  <li>Base58 encoded WIF begins with:</li>
+                    <ul>
+                      <li>Mainnet/Compressed: K/L</li>
+                      <li>Mainnet/Uncompressed: 5</li>
+                      <li>Testnet/Compressed: C</li>
+                      <li>Testnet/Uncompressed: 9</li>
+                    </ul>
+                  </ul>
+                <hr style = "height:3px; visibility:hidden;">
+              </ul>
+            </div>
+          </div><!-- End of 2 column container -->
+  
+        </section>
+        <!-- *********** END: Bitcoin Private Key WIF format *********** -->
 
 
       </div><!-- END: Slides Div -->
