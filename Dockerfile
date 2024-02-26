@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM --platform=linux/amd64 ubuntu:latest
 
 RUN apt-get update
 RUN apt-get -y install git wget python3-pip jq
